@@ -23,7 +23,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'capybara'
   gem 'factory_girl'
   gem 'factory_girl_rails'
   gem 'launchy'

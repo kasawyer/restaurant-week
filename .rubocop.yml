@@ -123,6 +123,7 @@ LineEndConcatenation:
 
 LineLength:
   Max: 80
+  Exclude: ['db/seeds.rb']
 
 MethodLength:
   Enabled: false
@@ -282,3 +283,4 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'scenario', 'feature', 'configure']
+  Exclude: ['db/seeds.rb']
