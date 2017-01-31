@@ -30,7 +30,7 @@ pages = [
 ]
 
 # pages.each do |page|
-  session.visit('https://www.bostonusa.com/dine-out-boston/restaurant-search/?skip=6&sort=rankTitle&dtnids=11019%2C15829')
+  session.visit('https://www.bostonusa.com/dine-out-boston/restaurant-search/?skip=0&sort=rankTitle&dtnids=11019%2C15829')
 
   session.all('.main_container div.listings .small-block-grid-1 li').each do |restaurant|
     name = restaurant.find("a.title").text
@@ -146,7 +146,7 @@ pages = [
       cuisine = cuisine.sub!("Cuisine: ", "")
     end
 
-    Restaurant.create!(name: name, image_url: image_url, region: region, address: address, cuisine: cuisine, lunch_price: lunch_price, lunch_menu_link: lunch_menu_link, dinner_price: dinner_price, dinner_menu_link: dinner_menu_link, special_notes: special_notes)
+    Restaurant.create(name: name, image_url: image_url, region: region, address: address, cuisine: cuisine, lunch_price: lunch_price, lunch_menu_link: lunch_menu_link, dinner_price: dinner_price, dinner_menu_link: dinner_menu_link, special_notes: special_notes)
 
     puts name
     puts image_url
