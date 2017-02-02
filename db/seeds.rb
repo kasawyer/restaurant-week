@@ -1,6 +1,5 @@
 require 'nokogiri'
 require 'net/http'
-require "pry"
 require 'capybara/poltergeist'
 
 session = Capybara::Session.new(:poltergeist)
