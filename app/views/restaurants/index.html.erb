@@ -1,30 +1,32 @@
-<h1>Boston Restaurant Week</h1>
 <h2>Participating restaurants</h2>
+<ul class="restaurant-info">
+  <% @restaurants.each do |restaurant| %>
+  <li class="restaurant-list-item">
+    <img src="<%= restaurant.image_url %>">
+    <h3><%= restaurant.name %></h3>
+    <p><%= restaurant.region %></p>
+    <p><%= restaurant.address %></p>
+    <p><%= restaurant.cuisine %></p>
 
-<% @restaurants.each do |restaurant| %>
-  <img src="<%= restaurant.image_url %>" height="150">
-  <h3><%= restaurant.name %></h3>
-  <p><%= restaurant.region %></p>
-  <p><%= restaurant.address %></p>
-  <p><%= restaurant.cuisine %></p>
+    <% if !restaurant.lunch_price.nil? && !restaurant.lunch_menu_link.nil? %>
+      <p>Lunch: <%= restaurant.lunch_price %> / <%= link_to "Menu", restaurant.lunch_menu_link, target: "_blank" %></p>
+    <% elsif !restaurant.lunch_price.nil? %>
+      <p>Lunch: <%= restaurant.lunch_price %></p>
+    <% end %>
 
-  <% if !restaurant.lunch_price.nil? && !restaurant.lunch_menu_link.nil? %>
-    <p><%= restaurant.lunch_price %> <%= link_to "Menu", restaurant.lunch_menu_link, target: "_blank" %></p>
-  <% elsif !restaurant.lunch_price.nil? %>
-    <p><%= restaurant.lunch_price %></p>
+    <% if !restaurant.dinner_price.nil? && !restaurant.dinner_menu_link.nil? %>
+      <p>Dinner: <%= restaurant.dinner_price %> / <%= link_to "Menu", restaurant.dinner_menu_link, target: "_blank" %></p>
+    <% elsif !restaurant.dinner_price.nil? %>
+      <p>Dinner: <%= restaurant.dinner_price %></p>
+    <% end %>
+
+    <% if !restaurant.special_notes.nil? %>
+      <p><%= restaurant.special_notes %></p>
+    <% end %>
+
+    <%= button_to "More information", restaurant, method: :get %>
+    <br/>
+    <br/>
   <% end %>
-
-  <% if !restaurant.dinner_price.nil? && !restaurant.dinner_menu_link.nil? %>
-    <p><%= restaurant.dinner_price %> <%= link_to "Menu", restaurant.dinner_menu_link, target: "_blank" %></p>
-  <% elsif !restaurant.dinner_price.nil? %>
-    <p><%= restaurant.dinner_price %></p>
-  <% end %>
-
-  <% if !restaurant.special_notes.nil? %>
-    <p><%= restaurant.special_notes %></p>
-  <% end %>
-
-  <%= link_to "More information", restaurant %>
-  <br/>
-  <br/>
-<% end %>
+  </li>
+</ul>

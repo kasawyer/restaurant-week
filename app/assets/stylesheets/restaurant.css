@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+.top-bar a {
+  font-size: 16px;
+}
+
+.top-bar {
+  background-image: url("/assets/10347547-cutlery-knife-fork-web-icon-flat-design-seamless-gray-pattern 3.jpg");
+  background-size: 450px;
+  background-repeat: repeat;
+  height: 300px;
+}
+
+.menu {
+  background-image: url("/assets/teal.png");
+  background-position: bottom right;
+  background-size: 450px;
+  border-radius: 5px;
+}
+
+.title a {
+  font-size: 125px;
+  color: #03A093;
+
+}
+
+body {
+  background-color: white;
+  font-family: Roboto;
+  font-weight: 300;
+}
+
+h1 {
+  margin: 20px;
+  margin-bottom: 0px;
+  font-size: 40px;
+  text-align: center;
+  font-family: Roboto;
+  font-weight: 550;
+}
+
+h2 {
+  margin-top: 20px;
+  font-size: 30px;
+  margin-left: 30px;
+}
+
+input[type="submit"], .edit-delete {
+  border: none;
+  color: white;
+  background-color: #8A8780;
+  padding: 8px;
+  font-size: 20px;
+}
+
+.edit-delete:hover {
+  color: white;
+}
+
+div {
+  margin: 0px;
+}
+
+input[type="text"], textarea {
+  width: 400px;
+}
+
+label {
+  font-size: 20px;
+  color: white;
+}
+
+a {
+  color:#E47267;
+  font-size: 20px;
+}
+
+.search-results, .flash {
+  color: white;
+  font-size: 24px;
+  margin: 30px;
+}
+
+.page-body {
+  margin: 20px;
+}
+
+.restaurant-list {
+  margin: 0px;
+}
+
+.restaurant-list-item {
+  background-color: white;
+  margin: 10px 25px 10px 10px;
+  color: #E47267;
+  padding: 10px;
+  font-size: 20px;
+  list-style: none;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #03A093;
+}
+
+.restaurant-list-item p {
+  line-height: 80%;
+}
+
+.restaurant-name {
+  font-weight: 600;
+}
+
+.restaurant-list-item:hover {
+  background-color: #8A8780;
+  margin: 10px 25px 10px 10px;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.restaurant-info {
+  list-style: none;
+  font-size: 20px;
+  padding: 20px;
+  margin-left: 0px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  display:inline-block;
+  width: 100%;
+}
+
+.restaurant-info img {
+  float: left;
+  padding-right: 20px;
+  height: 250px;
+  margin: 10px;
+}
+
+.avatar {
+    padding: 1.0em
+}
+
+.show-page {
+  margin: 20px;
+}
+
+.prompt {
+  font-weight: bold;
+}
+
+#search {
+  vertical-align: top;
+  display: inline;
+  margin-top: 5px;
+  margin-right: 0px;
+  margin-left: 10px;
+}
+
+.search-button {
+  vertical-align: top;
+  display: inline;
+  margin-top: 5px;
+  margin-right: 0px;
+  height: 39px;
+}
+
+.add {
+  margin-left: 30px;
+}
+
+.cancel {
+  margin-top: 10px;
+}
+
+.check-boxes {
+  width: 89%;
+}
