@@ -30,7 +30,7 @@ session = Capybara::Session.new(:poltergeist)
 #     ]
 
 # pages.each do |page|
-session.visit('https://www.bostonusa.com/dine-out-boston/restaurant-search/?skip=6&sort=rankTitle&dtnids=11019%2C15829')
+session.visit('https://www.bostonusa.com/dine-out-boston/restaurant-search/?skip=0&sort=rankTitle&dtnids=11019%2C15829')
 
 session.all('.main_container div.listings .small-block-grid-1 li').each do |restaurant|
   name = restaurant.find("a.title").text
@@ -47,13 +47,12 @@ session.all('.main_container div.listings .small-block-grid-1 li').each do |rest
     cuisine = info.slice(/Cuisine.* L/)
     cuisine = cuisine.chomp!(" L")
     cuisine = cuisine.sub!("Cuisine: ", "")
+    lunch_price = info.slice(/Lunch.* Dinner/)
     if info.include?("Menu")
-      menus = restaurant.all('div.address a')
-      lunch_menu_link = menus.first['href']
-      dinner_menu_link = menus.last['href']
-      lunch_price = info.slice(/Lunch.* Dinner/)
       lunch_price = lunch_price.sub!("Lunch: ", "")
       if lunch_price.include?("Menu")
+        menus = restaurant.all('div.address a')
+        lunch_menu_link = menus.first['href']
         lunch_price = lunch_price.chomp!(" / Menu Dinner")
       elsif !lunch_price.include?("Menu")
         lunch_price = lunch_price.chomp!(" Dinner")
@@ -65,16 +64,19 @@ session.all('.main_container div.listings .small-block-grid-1 li').each do |rest
       if dinner_price.include?("Special Notes")
         special_notes = dinner_price.slice!(/Special.*/)
         if dinner_price.include?("Menu")
+          menus = restaurant.all('div.address a')
+          dinner_menu_link = menus.last['href']
           dinner_price = dinner_price.chomp!(" / Menu ")
         end
       end
 
       if dinner_price.include?("Menu")
+        menus = restaurant.all('div.address a')
+        dinner_menu_link = menus.last['href']
         dinner_price = dinner_price.chomp!(" / Menu")
       end
 
     else
-      lunch_price = info.slice(/Lunch.* Dinner/)
       lunch_price = lunch_price.chomp!(" Dinner")
       lunch_price = lunch_price.sub!("Lunch: ", "")
       dinner_price = info.slice(/Dinner.*/)

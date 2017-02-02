@@ -1,22 +1,25 @@
-<h2><%= @restaurant.name %></h3>
+<ul class="restaurant-info">
+  <li class="restaurant-list-item">
+  <img src="<%= @restaurant.image_url %>">
+  <h2><%= @restaurant.name %></h3>
+  <p><%= @restaurant.region %></p>
+  <p><%= @restaurant.address %></p>
+  <p><%= @restaurant.cuisine %></p>
 
-<img src="<%= @restaurant.image_url %>" height="150">
-<p><%= @restaurant.region %></p>
-<p><%= @restaurant.address %></p>
-<p><%= @restaurant.cuisine %></p>
+  <% if !@restaurant.lunch_price.nil? && !@restaurant.lunch_menu_link.nil? %>
+    <p><%= @restaurant.lunch_price %> <%= link_to "Menu", @restaurant.lunch_menu_link, target: "_blank" %></p>
+  <% elsif !@restaurant.lunch_price.nil? %>
+    <p><%= @restaurant.lunch_price %></p>
+  <% end %>
 
-<% if !@restaurant.lunch_price.nil? && !@restaurant.lunch_menu_link.nil? %>
-  <p><%= @restaurant.lunch_price %> <%= link_to "Menu", @restaurant.lunch_menu_link, target: "_blank" %></p>
-<% elsif !@restaurant.lunch_price.nil? %>
-  <p><%= @restaurant.lunch_price %></p>
-<% end %>
+  <% if !@restaurant.dinner_price.nil? && !@restaurant.dinner_menu_link.nil? %>
+    <p><%= @restaurant.dinner_price %> <%= link_to "Menu", @restaurant.dinner_menu_link, target: "_blank" %></p>
+  <% elsif !@restaurant.dinner_price.nil? %>
+    <p><%= @restaurant.dinner_price %></p>
+  <% end %>
 
-<% if !@restaurant.dinner_price.nil? && !@restaurant.dinner_menu_link.nil? %>
-  <p><%= @restaurant.dinner_price %> <%= link_to "Menu", @restaurant.dinner_menu_link, target: "_blank" %></p>
-<% elsif !@restaurant.dinner_price.nil? %>
-  <p><%= @restaurant.dinner_price %></p>
-<% end %>
-
-<% if !@restaurant.special_notes.nil? %>
-  <p><%= @restaurant.special_notes %></p>
-<% end %>
+  <% if !@restaurant.special_notes.nil? %>
+    <p><%= @restaurant.special_notes %></p>
+  <% end %>
+  </li>
+</ul>

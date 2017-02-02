@@ -4,17 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Podcastaway" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <header>
     <div class="top-bar">
       <div class="top-bar-left">
-      <span class="menu-text title"><a href="/">Restaurant Week</a></span>
+      <span class="menu-text title"><a href="/">DineOut+</a></span>
       </div>
 
       <div class="top-bar-right">
@@ -65,13 +64,16 @@
         </ul>
       </div>
     </div>
-
+  </header>
+  
     <div class="flash">
       <% flash.each do |key, value| %>
         <%= value %>
       <% end %>
     </div>
 
+  <body>
+    <title><%= content_for?(:title) ? yield(:title) : "Restaurant Week" %></title>
     <%= yield %>
   </body>
 </html>

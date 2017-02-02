@@ -1,7 +1,7 @@
 source 'https://rubygems.org/'
 
-gem 'carrierwave', '~> 1.0'
 gem 'capybara'
+gem 'carrierwave', '~> 1.0'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'faker'
