@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'restaurants#index'
-  
+
   devise_for :admins
   devise_for :users
 

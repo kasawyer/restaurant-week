@@ -3,7 +3,8 @@ class Api::V1::ReviewsController < ApplicationController
 
   def index
     @restaurant = Restaurant.find(params[:restaurant_id])
-    @reviews = @restaurant.reviews.sort_by { |review| review.total_votes }.reverse
+    @reviews =
+      @restaurant.reviews.sort_by { |review| review.total_votes }.reverse
     render json: @reviews
   end
 
