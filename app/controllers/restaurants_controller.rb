@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all.order("name DESC")
     if params[:search]
-      @restaurants = Restaurant.search(params[:search]).order("name DESC")
+      @restaurants = Restaurant.search(params[:search]).order("name ASC")
     else
       @restaurants = []
     end

@@ -4,7 +4,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import PodcastList from './components/PodcastList';
+// import RestaurantList from './components/RestaurantList';
 
 $(function() {
   if (document.getElementById('review-list')) {
@@ -13,10 +13,10 @@ $(function() {
       document.getElementById('review-list')
     );
   }
-  if (document.getElementById('restaurant-list')) {
-    ReactDOM.render(
-      <PodcastList />,
-      document.getElementById('restaurant-list')
-    );
-  }
+  // if (document.getElementById('restaurant-list')) {
+  //   ReactDOM.render(
+  //     <RestaurantList />,
+  //     document.getElementById('restaurant-list')
+  //   );
+  // }
 });
