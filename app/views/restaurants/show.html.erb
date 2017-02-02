@@ -23,3 +23,37 @@
   <% end %>
   </li>
 </ul>
+
+<h1>Reviews</h1>
+  <% if current_user || current_admin %>
+    <h2>Add a review</h2>
+    <%= form_for [@restaurant, @new_review] do |f| %>
+      <div class="field">
+        <%= f.label :rating, "Rating (1-5)" %>
+        <%= f.text_field :rating %>
+      </div>
+
+      <div class="field">
+        <%= f.label :body, "Review" %>
+        <%= f.text_area :body %>
+      </div>
+
+      <div class="action">
+        <%= f.submit "Add review"%>
+      </div>
+    <% end %>
+  <% end %>
+  <br/>
+
+  <div id="review-list">
+    <input type="hidden" id="restaurant-id" value="<%= @restaurant.id %>" />
+    <% if current_user %>
+      <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
+    <% else %>
+      <input type="hidden" id="current-user-id" value="0" />
+    <% end %>
+    <input type="hidden" id="admin" value="<%= admin_signed_in? %>" />
+  </div>
+  <br/>
+
+  <%= link_to "Back to restaurants", restaurants_path %>
