@@ -283,7 +283,7 @@ DEPENDENCIES
   faker
   fog-aws
   font-awesome-rails
-  foundation-rails
+  foundation-rails (~> 6.0)
   httparty
   image_magick
   jquery-rails
