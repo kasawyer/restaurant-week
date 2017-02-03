@@ -5,10 +5,9 @@ class RestaurantsController < ApplicationController
     @region_collection = Restaurant::REGIONS
     @lunch_price_collection = Restaurant::LUNCH_PRICES
     @dinner_price_collection = Restaurant::DINNER_PRICES
-    unless check_empty_search_params
+    unless empty_search_params
       search_params = get_search_params
       @restaurants = Restaurant.search(search_params)
-      binding.pry
     end
   end
 
@@ -27,7 +26,7 @@ class RestaurantsController < ApplicationController
 
   private
 
-  def check_empty_search_params
+  def empty_search_params
     params[:region].blank? && params[:cuisine].blank? && params[:lunch_price].blank? && params[:dinner_price].blank? && params[:keyword].blank?
   end
 

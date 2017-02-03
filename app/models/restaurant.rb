@@ -1,10 +1,10 @@
 class Restaurant < ApplicationRecord
   CUISINES = [
     ["Cuisine", ""],
-    ["Afghan", "Afghan"],
-    ["American", "American"],
-    ["Argentinian", "Argentinian"],
-    ["Asian", "Asian"],
+    ["Afghan"],
+    ["American"],
+    ["Argentinian"],
+    ["Asian"],
     ["Barbeque"],
     ["Brazilian Steakhouse"],
     ["British"],
@@ -64,9 +64,7 @@ class Restaurant < ApplicationRecord
     ["Cambridge - West Cambridge"],
     ["Greater Boston - North"],
     ["Greater Boston - South"],
-    ["Greater Boston - West"],
-    ["New England"],
-    ["Citywide"]
+    ["Greater Boston - West"]
   ]
 
   LUNCH_PRICES = [
@@ -94,17 +92,9 @@ class Restaurant < ApplicationRecord
   def self.search(search)
     search.delete_if{|key, value| value.empty? }
     if search[:keyword]
-      where(search) && where("name ILIKE ?, OR cuisine ILIKE ? OR region ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+      where(search) && where("name ILIKE ? OR cuisine ILIKE ? OR region ILIKE ?", "%#{search[:keyword]}%", "%#{search[:keyword]}%", "%#{search[:keyword]}%")
     else
       where(search)
     end
   end
-
-  # def self.keyword(search)
-  #   where("name ILIKE ?, OR cuisine ILIKE ? OR region ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
-  # end
-
-  # def self.search(search)
-  #   where("name ILIKE ?, OR cuisine ILIKE ? OR lunch_price ILIKE ? OR dinner_price ILIKE ? OR region ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
-  # end
 end
