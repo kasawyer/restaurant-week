@@ -92,7 +92,7 @@ class Restaurant < ApplicationRecord
   def self.search(search)
     search.delete_if{|key, value| value.empty? }
     if search[:keyword]
-      where(search) && where("name ILIKE ? OR cuisine ILIKE ? OR region ILIKE ?", "%#{search[:keyword]}%", "%#{search[:keyword]}%", "%#{search[:keyword]}%")
+      where(search.except(:keyword)) && where("name ILIKE ?", "%#{search[:keyword]}%")
     else
       where(search)
     end
