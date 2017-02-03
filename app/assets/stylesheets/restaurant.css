@@ -98,7 +98,7 @@ a {
   border-style: solid;
   border-radius: 5px;
   border-color: #03A093;
-  height: 300px;
+  height: 315px;
 }
 
 .restaurant-list-item p {
@@ -131,16 +131,12 @@ a {
 .restaurant-info img {
   float: left;
   padding-right: 20px;
-  height: 250px;
+  width: 375px;
   margin: 10px;
 }
 
 .avatar {
     padding: 1.0em
-}
-
-.show-page {
-  margin: 20px;
 }
 
 .prompt {
@@ -179,6 +175,6 @@ a {
   margin-top: 10px;
 }
 
-.check-boxes {
-  width: 89%;
+.pagination {
+
 }
