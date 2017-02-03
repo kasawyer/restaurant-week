@@ -32,7 +32,7 @@ class Restaurant < ApplicationRecord
     ["Sushi"],
     ["Thai"],
     ["Tapas"]
-  ]
+  ].freeze
 
   REGIONS = [
     ["Region", ""],
@@ -65,21 +65,21 @@ class Restaurant < ApplicationRecord
     ["Greater Boston - North"],
     ["Greater Boston - South"],
     ["Greater Boston - West"]
-  ]
+  ].freeze
 
   LUNCH_PRICES = [
     ["Lunch price", ""],
     ["$15"],
     ["$20"],
     ["$25"]
-  ]
+  ].freeze
 
   DINNER_PRICES = [
     ["Dinner price", ""],
     ["$28"],
     ["$33"],
     ["$38"]
-  ]
+  ].freeze
 
   has_many :reviews
 
@@ -90,9 +90,10 @@ class Restaurant < ApplicationRecord
   validates :cuisine, presence: true
 
   def self.search(search)
-    search.delete_if{|key, value| value.empty? }
+    search.delete_if { |_key, value| value.empty? }
     if search[:keyword]
-      where(search.except(:keyword)) && where("name ILIKE ?", "%#{search[:keyword]}%")
+      where(search.except(:keyword)) && where("name ILIKE ?",
+        "%#{search[:keyword]}%")
     else
       where(search)
     end

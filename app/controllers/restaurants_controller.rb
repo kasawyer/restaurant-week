@@ -27,16 +27,20 @@ class RestaurantsController < ApplicationController
   private
 
   def empty_search_params
-    params[:region].blank? && params[:cuisine].blank? && params[:lunch_price].blank? && params[:dinner_price].blank? && params[:keyword].blank?
+    params[:region].blank? && params[:cuisine].blank? &&
+      params[:lunch_price].blank? && params[:dinner_price].blank? &&
+      params[:keyword].blank?
   end
 
   def get_search_params
-    {region: params[:region], cuisine: params[:cuisine], lunch_price: params[:lunch_price], dinner_price: params[:dinner_price], keyword: params[:keyword]}
+    { region: params[:region], cuisine: params[:cuisine],
+      lunch_price: params[:lunch_price], dinner_price: params[:dinner_price],
+      keyword: params[:keyword] }
   end
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :image_url, :region, :address,
-    :cuisine, :lunch_price, :lunch_menu_link, :dinner_price,
-    :dinner_menu_link, :special_notes)
+      :cuisine, :lunch_price, :lunch_menu_link, :dinner_price,
+      :dinner_menu_link, :special_notes)
   end
 end
