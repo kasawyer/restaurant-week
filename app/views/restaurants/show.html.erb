@@ -1,59 +1,62 @@
-<ul class="restaurant-info">
-  <li class="restaurant-list-item">
-  <img src="<%= @restaurant.image_url %>">
-  <h2><%= @restaurant.name %></h3>
-  <p><%= @restaurant.region %></p>
-  <p><%= @restaurant.address %></p>
-  <p><%= @restaurant.cuisine %></p>
+<div class="page-body">
 
-  <% if !@restaurant.lunch_price.nil? && !@restaurant.lunch_menu_link.nil? %>
-    <p><%= @restaurant.lunch_price %> <%= link_to "Menu", @restaurant.lunch_menu_link, target: "_blank" %></p>
-  <% elsif !@restaurant.lunch_price.nil? %>
-    <p><%= @restaurant.lunch_price %></p>
-  <% end %>
+  <ul class="restaurant-info">
+    <li class="restaurant-list-item">
+    <img src="<%= @restaurant.image_url %>">
+    <h2><%= @restaurant.name %></h3>
+    <p><%= @restaurant.region %></p>
+    <p><%= @restaurant.address %></p>
+    <p><%= @restaurant.cuisine %></p>
 
-  <% if !@restaurant.dinner_price.nil? && !@restaurant.dinner_menu_link.nil? %>
-    <p><%= @restaurant.dinner_price %> <%= link_to "Menu", @restaurant.dinner_menu_link, target: "_blank" %></p>
-  <% elsif !@restaurant.dinner_price.nil? %>
-    <p><%= @restaurant.dinner_price %></p>
-  <% end %>
-
-  <% if !@restaurant.special_notes.nil? %>
-    <p><%= @restaurant.special_notes %></p>
-  <% end %>
-  </li>
-</ul>
-
-<h1>Reviews</h1>
-  <% if current_user || current_admin %>
-    <h2>Add a review</h2>
-    <%= form_for [@restaurant, @new_review] do |f| %>
-      <div class="field">
-        <%= f.label :rating, "Rating (1-5)" %>
-        <%= f.text_field :rating %>
-      </div>
-
-      <div class="field">
-        <%= f.label :body, "Review" %>
-        <%= f.text_area :body %>
-      </div>
-
-      <div class="action">
-        <%= f.submit "Add review"%>
-      </div>
+    <% if !@restaurant.lunch_price.nil? && !@restaurant.lunch_menu_link.nil? %>
+      <p><%= @restaurant.lunch_price %> <%= link_to "Menu", @restaurant.lunch_menu_link, target: "_blank" %></p>
+    <% elsif !@restaurant.lunch_price.nil? %>
+      <p><%= @restaurant.lunch_price %></p>
     <% end %>
-  <% end %>
-  <br/>
 
-  <div id="review-list">
-    <input type="hidden" id="restaurant-id" value="<%= @restaurant.id %>" />
-    <% if current_user %>
-      <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
-    <% else %>
-      <input type="hidden" id="current-user-id" value="0" />
+    <% if !@restaurant.dinner_price.nil? && !@restaurant.dinner_menu_link.nil? %>
+      <p><%= @restaurant.dinner_price %> <%= link_to "Menu", @restaurant.dinner_menu_link, target: "_blank" %></p>
+    <% elsif !@restaurant.dinner_price.nil? %>
+      <p><%= @restaurant.dinner_price %></p>
     <% end %>
-    <input type="hidden" id="admin" value="<%= admin_signed_in? %>" />
-  </div>
-  <br/>
 
-  <%= link_to "Back to restaurants", restaurants_path %>
+    <% if !@restaurant.special_notes.nil? %>
+      <p><%= @restaurant.special_notes %></p>
+    <% end %>
+    </li>
+  </ul>
+
+  <h1>Reviews</h1>
+    <% if current_user || current_admin %>
+      <h2>Add a review</h2>
+      <%= form_for [@restaurant, @new_review] do |f| %>
+        <div class="field">
+          <%= f.label :rating, "Rating (1-5)" %>
+          <%= f.text_field :rating %>
+        </div>
+
+        <div class="field">
+          <%= f.label :body, "Review" %>
+          <%= f.text_area :body %>
+        </div>
+
+        <div class="action">
+          <%= f.submit "Add review"%>
+        </div>
+      <% end %>
+    <% end %>
+    <br/>
+
+    <div id="review-list">
+      <input type="hidden" id="restaurant-id" value="<%= @restaurant.id %>" />
+      <% if current_user %>
+        <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
+      <% else %>
+        <input type="hidden" id="current-user-id" value="0" />
+      <% end %>
+      <input type="hidden" id="admin" value="<%= admin_signed_in? %>" />
+    </div>
+    <br/>
+
+    <%= link_to "Back to restaurants", restaurants_path %>
+</div>

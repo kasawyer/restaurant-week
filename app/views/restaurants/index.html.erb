@@ -45,11 +45,11 @@
   <div class="filter-form">
   <%= form_tag(restaurants_path, method: "get", id: "search-form") do %>
       <ul class="search-container">
-        <li><%= select_tag :search, options_for_select(@region_collection, params[:search]) %></li>
-        <li><%= select_tag :search, options_for_select(@cuisine_collection, params[:search]) %></li>
-        <li><%= select_tag :search, options_for_select(@lunch_price_collection, params[:search]) %></li>
-        <li><%= select_tag :search, options_for_select(@dinner_price_collection, params[:search]) %></li>
-        <li><%= text_field_tag :search, params[:search], placeholder: "Keywords" %></li>
+        <li><%= select_tag :region, options_for_select(@region_collection, params[:search]) %></li>
+        <li><%= select_tag :cuisine, options_for_select(@cuisine_collection, params[:search]) %></li>
+        <li><%= select_tag :lunch_price, options_for_select(@lunch_price_collection, params[:search]) %></li>
+        <li><%= select_tag :dinner_price, options_for_select(@dinner_price_collection, params[:search]) %></li>
+        <li><%= text_field_tag :keyword, params[:search], placeholder: "Keywords" %></li>
         <li><%= submit_tag "Search", name: nil, class: "search-button" %></li>
       </ul>
     <% end %>

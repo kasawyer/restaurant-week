@@ -1,0 +1,54 @@
+.reviews {
+  margin: 30px;
+}
+
+.review-list-item {
+  background-color: #DBDDDD;
+  list-style: none;
+  font-size: 18px;
+}
+
+.review-list-item .edit-delete {
+  margin: 5px;
+  margin-top: 20px;
+}
+
+.edit-delete a {
+  background-color: #376996;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.vote-buttons {
+  width: 5%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  padding: 20px;
+}
+
+.vote-buttons p {
+  margin: 5px;
+  padding: 6px;
+}
+
+.review-body {
+  width: 95%;
+  display: inline-block;
+  padding: 10px;
+}
+
+.review-body p {
+  margin: 5px;
+  margin-bottom: 15px;
+}
+
+.edit-review label, .edit-review h2 {
+  color: black;
+}
+
+.action {
+  margin-left: -10px;
+}
