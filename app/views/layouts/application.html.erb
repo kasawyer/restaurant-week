@@ -53,19 +53,11 @@
               </li>
             </ul>
           </li>
-          <li>
-            <%= form_tag(restaurants_path, method: "get", id: "search-form") do %>
-              <div class="search-container">
-                <%= text_field_tag :search, params[:search], placeholder: "Search restaurants" %>
-                <%= submit_tag "Search", name: nil, class: "search-button" %>
-              </div>
-            <% end %>
-          </li>
         </ul>
       </div>
     </div>
   </header>
-  
+
     <div class="flash">
       <% flash.each do |key, value| %>
         <%= value %>
@@ -73,7 +65,7 @@
     </div>
 
   <body>
-    <title><%= content_for?(:title) ? yield(:title) : "Restaurant Week" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "DineOut+" %></title>
     <%= yield %>
   </body>
 </html>

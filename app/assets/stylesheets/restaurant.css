@@ -19,9 +19,8 @@
 }
 
 .title a {
-  font-size: 125px;
+  font-size: 150px;
   color: #03A093;
-
 }
 
 body {
@@ -110,9 +109,9 @@ a {
 }
 
 .restaurant-list-item:hover {
-  background-color: #8A8780;
+  background-color: #DBDDDD;
   margin: 10px 25px 10px 10px;
-  color: white;
+  color: black;
   padding: 10px;
   font-size: 20px;
 }
@@ -153,6 +152,12 @@ a {
   margin-top: 5px;
   margin-right: 0px;
   margin-left: 10px;
+}
+
+#search-form li {
+  width: 40px;
+  display: inline;
+  list-style-type: none;
 }
 
 .search-button {

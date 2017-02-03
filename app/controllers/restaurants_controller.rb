@@ -1,10 +1,12 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all.order("name DESC")
+    @restaurants = Restaurant.all.order("name ASC")
+    @cuisine_collection = Restaurant::CUISINES
+    @region_collection = Restaurant::REGIONS
+    @lunch_price_collection = Restaurant::LUNCH_PRICES
+    @dinner_price_collection = Restaurant::DINNER_PRICES
     if params[:search]
       @restaurants = Restaurant.search(params[:search]).order("name ASC")
-    else
-      @restaurants = []
     end
   end
 
