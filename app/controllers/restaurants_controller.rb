@@ -1,10 +1,13 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all.order("name DESC")
-    if params[:search]
-      @restaurants = Restaurant.search(params[:search]).order("name ASC")
-    else
-      @restaurants = []
+    @restaurants = Restaurant.all.order("name ASC")
+    @cuisine_collection = Restaurant::CUISINES
+    @region_collection = Restaurant::REGIONS
+    @lunch_price_collection = Restaurant::LUNCH_PRICES
+    @dinner_price_collection = Restaurant::DINNER_PRICES
+    unless empty_search_params
+      search_params = get_search_params
+      @restaurants = Restaurant.search(search_params)
     end
   end
 
@@ -22,6 +25,18 @@ class RestaurantsController < ApplicationController
   end
 
   private
+
+  def empty_search_params
+    params[:region].blank? && params[:cuisine].blank? &&
+      params[:lunch_price].blank? && params[:dinner_price].blank? &&
+      params[:keyword].blank?
+  end
+
+  def get_search_params
+    { region: params[:region], cuisine: params[:cuisine],
+      lunch_price: params[:lunch_price], dinner_price: params[:dinner_price],
+      keyword: params[:keyword] }
+  end
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :image_url, :region, :address,

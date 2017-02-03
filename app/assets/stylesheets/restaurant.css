@@ -8,7 +8,7 @@
   background-image: url("/assets/10347547-cutlery-knife-fork-web-icon-flat-design-seamless-gray-pattern 3.jpg");
   background-size: 450px;
   background-repeat: repeat;
-  height: 300px;
+  height: 170px;
 }
 
 .menu {
@@ -19,9 +19,8 @@
 }
 
 .title a {
-  font-size: 125px;
+  font-size: 150px;
   color: #03A093;
-
 }
 
 body {
@@ -67,7 +66,7 @@ input[type="text"], textarea {
 
 label {
   font-size: 20px;
-  color: white;
+  color: black;
 }
 
 a {
@@ -76,7 +75,7 @@ a {
 }
 
 .search-results, .flash {
-  color: white;
+  color: black;
   font-size: 24px;
   margin: 30px;
 }
@@ -99,6 +98,7 @@ a {
   border-style: solid;
   border-radius: 5px;
   border-color: #03A093;
+  height: 300px;
 }
 
 .restaurant-list-item p {
@@ -110,9 +110,9 @@ a {
 }
 
 .restaurant-list-item:hover {
-  background-color: #8A8780;
+  background-color: #DBDDDD;
   margin: 10px 25px 10px 10px;
-  color: white;
+  color: black;
   padding: 10px;
   font-size: 20px;
 }
@@ -153,6 +153,14 @@ a {
   margin-top: 5px;
   margin-right: 0px;
   margin-left: 10px;
+}
+
+#search-form li {
+  width: 200px;
+  display: inline-block;
+  list-style-type: none;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .search-button {

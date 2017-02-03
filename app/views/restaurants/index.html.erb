@@ -1,45 +1,53 @@
 <div class="page-body">
-  <% if params[:search] %>
-    <% if params[:search] == "" %>
-      <p class="search-results">Please enter search terms.</p>
-    <% elsif @restaurants.empty? %>
-      <p class="search-results">No results matched your search.</p>
-    <% else %>
-      <h1>Search results</h1>
-      <ul class="restaurant-info">
-        <% @restaurants.each do |restaurant| %>
-        <li class="restaurant-list-item">
-          <img src="<%= restaurant.image_url %>">
-          <h3><%= restaurant.name %></h3>
-          <p><%= restaurant.region %></p>
-          <p><%= restaurant.address %></p>
-          <p><%= restaurant.cuisine %></p>
 
-          <% if !restaurant.lunch_price.nil? && !restaurant.lunch_menu_link.nil? %>
-            <p>Lunch: <%= restaurant.lunch_price %> / <%= link_to "Menu", restaurant.lunch_menu_link, target: "_blank" %></p>
-          <% elsif !restaurant.lunch_price.nil? %>
-            <p>Lunch: <%= restaurant.lunch_price %></p>
-          <% end %>
+  <h1>Participating restaurants</h1>
 
-          <% if !restaurant.dinner_price.nil? && !restaurant.dinner_menu_link.nil? %>
-            <p>Dinner: <%= restaurant.dinner_price %> / <%= link_to "Menu", restaurant.dinner_menu_link, target: "_blank" %></p>
-          <% elsif !restaurant.dinner_price.nil? %>
-            <p>Dinner: <%= restaurant.dinner_price %></p>
-          <% end %>
-
-          <% if !restaurant.special_notes.nil? %>
-            <p><%= restaurant.special_notes %></p>
-          <% end %>
-
-          <%= button_to "More information", restaurant, method: :get %>
-          <br/>
-          <br/>
-        <% end %>
-        </li>
+  <div class="filter-form">
+  <%= form_tag(restaurants_path, method: "get", id: "search-form") do %>
+      <ul class="search-container">
+        <li><%= select_tag :region, options_for_select(@region_collection, params[:search]) %></li>
+        <li><%= select_tag :cuisine, options_for_select(@cuisine_collection, params[:search]) %></li>
+        <li><%= select_tag :lunch_price, options_for_select(@lunch_price_collection, params[:search]) %></li>
+        <li><%= select_tag :dinner_price, options_for_select(@dinner_price_collection, params[:search]) %></li>
+        <li><%= text_field_tag :keyword, params[:search], placeholder: "Keywords" %></li>
+        <li><%= submit_tag "Search", name: nil, class: "search-button" %></li>
       </ul>
     <% end %>
-  <% end %>
+  </div>
 
-  <h2>Participating restaurants</h2>
-  <div id="restaurant-list"/>
+  <ul class="restaurant-info">
+    <% if @restaurants.empty? %>
+      <p class="search-results">No results matched your search.</p>
+    <% else %>
+      <% @restaurants.each do |restaurant| %>
+      <li class="restaurant-list-item">
+        <img src="<%= restaurant.image_url %>">
+        <h3><%= restaurant.name %></h3>
+        <p><%= restaurant.region %></p>
+        <p><%= restaurant.address %></p>
+        <p><%= restaurant.cuisine %></p>
+
+        <% if !restaurant.lunch_price.nil? && !restaurant.lunch_menu_link.nil? %>
+          <p>Lunch: <%= restaurant.lunch_price %> / <%= link_to "Menu", restaurant.lunch_menu_link, target: "_blank" %></p>
+        <% elsif !restaurant.lunch_price.nil? %>
+          <p>Lunch: <%= restaurant.lunch_price %></p>
+        <% end %>
+
+        <% if !restaurant.dinner_price.nil? && !restaurant.dinner_menu_link.nil? %>
+          <p>Dinner: <%= restaurant.dinner_price %> / <%= link_to "Menu", restaurant.dinner_menu_link, target: "_blank" %></p>
+        <% elsif !restaurant.dinner_price.nil? %>
+          <p>Dinner: <%= restaurant.dinner_price %></p>
+        <% end %>
+
+        <% if !restaurant.special_notes.nil? %>
+          <p><%= restaurant.special_notes %></p>
+        <% end %>
+
+        <%= button_to "More information", restaurant, method: :get %>
+        <br/>
+        <br/>
+      <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>

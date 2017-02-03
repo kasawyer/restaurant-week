@@ -1,4 +1,86 @@
 class Restaurant < ApplicationRecord
+  CUISINES = [
+    ["Cuisine", ""],
+    ["Afghan"],
+    ["American"],
+    ["Argentinian"],
+    ["Asian"],
+    ["Barbeque"],
+    ["Brazilian Steakhouse"],
+    ["British"],
+    ["Continental"],
+    ["Contemporary American"],
+    ["Fondue"],
+    ["French"],
+    ["French/Cambodian"],
+    ["Fusion"],
+    ["Indian"],
+    ["International"],
+    ["Irish"],
+    ["Italian"],
+    ["Japanese"],
+    ["Latin"],
+    ["Mediterranean"],
+    ["Mexican"],
+    ["Moroccan"],
+    ["New England Cuisine"],
+    ["Persian"],
+    ["Seafood"],
+    ["Southwestern"],
+    ["Spanish"],
+    ["Steakhouse"],
+    ["Sushi"],
+    ["Thai"],
+    ["Tapas"]
+  ].freeze
+
+  REGIONS = [
+    ["Region", ""],
+    ["Boston - Back Bay"],
+    ["Boston - Beacon Hill"],
+    ["Boston - Brookline"],
+    ["Boston - Charlestown"],
+    ["Boston - Dorchester"],
+    ["Boston - Downtown/Financial District"],
+    ["Boston - Airport/Chelsea/Revere"],
+    ["Boston - Fenway/Kenmore"],
+    ["Boston - Fort Point"],
+    ["Boston - North End"],
+    ["Boston - Roslindale/West Roxbury/Hyde Park"],
+    ["Boston - Somerville"],
+    ["Boston - Seaport District"],
+    ["Boston - South End"],
+    ["Boston - South Boston"],
+    ["Boston - Theatre District/Chinatown"],
+    ["Boston - Waterfront"],
+    ["Boston - West End"],
+    ["Cambridge - Cambridgeport"],
+    ["Cambridge - Central Square"],
+    ["Cambridge - East Cambridge"],
+    ["Cambridge - Harvard Square"],
+    ["Cambridge - Inman Square"],
+    ["Cambridge - Kendall Square"],
+    ["Cambridge - Porter Square"],
+    ["Cambridge - West Cambridge"],
+    ["Greater Boston - North"],
+    ["Greater Boston - South"],
+    ["Greater Boston - West"]
+  ].freeze
+
+  LUNCH_PRICES = [
+    ["Lunch price", ""],
+    ["$15"],
+    ["$20"],
+    ["$25"]
+  ].freeze
+
+  DINNER_PRICES = [
+    ["Dinner price", ""],
+    ["$28"],
+    ["$33"],
+    ["$38"]
+  ].freeze
+
   has_many :reviews
 
   validates :name, presence: true
@@ -8,6 +90,12 @@ class Restaurant < ApplicationRecord
   validates :cuisine, presence: true
 
   def self.search(search)
-    where("name ILIKE ? OR cuisine ILIKE ?", "%#{search}%", "%#{search}%")
+    search.delete_if { |_key, value| value.empty? }
+    if search[:keyword]
+      where(search.except(:keyword)) && where("name ILIKE ?",
+        "%#{search[:keyword]}%")
+    else
+      where(search)
+    end
   end
 end
