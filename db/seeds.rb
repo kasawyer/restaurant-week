@@ -29,7 +29,7 @@ session = Capybara::Session.new(:poltergeist)
 #     ]
 
 # pages.each do |page|
-session.visit('https://www.bostonusa.com/dine-out-boston/restaurant-search/?skip=0&sort=rankTitle&dtnids=11019%2C15829')
+session.visit('https://www.bostonusa.com/dine-out-boston/restaurant-search/?skip=30&sort=rankTitle&dtnids=11019%2C15829')
 
 session.all('.main_container div.listings .small-block-grid-1 li').each do |restaurant|
   name = restaurant.find("a.title").text

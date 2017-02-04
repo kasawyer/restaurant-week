@@ -15,6 +15,8 @@
     <% end %>
   </div>
 
+  <%= paginate @restaurants %>
+
   <ul class="restaurant-info">
     <% if @restaurants.empty? %>
       <p class="search-results">No results matched your search.</p>
@@ -50,4 +52,5 @@
       </li>
     <% end %>
   </ul>
+  <%= paginate @restaurants %>
 </div>
