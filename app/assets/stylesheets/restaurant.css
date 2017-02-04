@@ -41,7 +41,6 @@ h1 {
 h2 {
   margin-top: 20px;
   font-size: 30px;
-  margin-left: 30px;
 }
 
 input[type="submit"], .edit-delete {
@@ -144,11 +143,10 @@ a {
 }
 
 #search {
-  vertical-align: top;
   display: inline;
-  margin-top: 5px;
-  margin-right: 0px;
+  margin-right: 10px;
   margin-left: 10px;
+  width: 100px;
 }
 
 #search-form li {
@@ -162,8 +160,8 @@ a {
 .search-button {
   vertical-align: top;
   display: inline;
-  margin-top: 5px;
   margin-right: 0px;
+  margin-left: 10px;
   height: 39px;
 }
 
@@ -175,6 +173,10 @@ a {
   margin-top: 10px;
 }
 
-.pagination {
-
+.pagination li {
+  display: inline-block;
+  list-style-type: disc;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 20px;
 }
