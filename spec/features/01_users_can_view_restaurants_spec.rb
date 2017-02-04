@@ -18,11 +18,13 @@ feature "user visits home page" do
     expect(page).to have_content "O Ya"
   end
 
-  scenario "podcasts are listed in alphabetical order" do
+  scenario "restaurants are listed in alphabetical order" do
 
     visit "/restaurants"
 
-    expect(page).to have_selector("ul.restaurant-info li:nth-child(1)", visible: blue_ginger.name)
-    expect(page).to have_selector("ul.restaurant-info li:nth-child(2)", visible: o_ya.name)
+    expect(page).to have_selector("ul.restaurant-info li:nth-child(1)",
+      visible: blue_ginger.name)
+    expect(page).to have_selector("ul.restaurant-info li:nth-child(2)",
+      visible: o_ya.name)
   end
 end

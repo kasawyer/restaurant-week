@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all.order("name ASC")
+    @restaurants = Restaurant.all.order("LOWER(name) ASC")
     @restaurants =
       Kaminari.paginate_array(@restaurants).page(params[:page]).per(10)
     @cuisine_collection = Restaurant::CUISINES

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Vote do
-  let!(:user) { FactoryGirl.create(:user, email: "person1@person.com")}
+  let!(:user) { FactoryGirl.create(:user, email: "person1@person.com") }
   let!(:vote) { FactoryGirl.create(:vote, user: user) }
 
   describe ".new" do
