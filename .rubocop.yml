@@ -123,7 +123,8 @@ LineEndConcatenation:
 
 LineLength:
   Max: 80
-  Exclude: ['db/seeds.rb']
+  Exclude: ['db/seeds.rb', 'spec/factories/restaurants.rb',
+    spec/models/03_restaurants_spec.rb]
 
 MethodLength:
   Enabled: false
