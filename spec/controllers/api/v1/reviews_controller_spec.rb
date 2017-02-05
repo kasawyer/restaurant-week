@@ -3,13 +3,13 @@ require "rails_helper"
 RSpec.describe Api::V1::ReviewsController, type: :controller do
   let!(:user) do
     FactoryGirl.create(:user,
-    email: "persona@person.com")
+      email: "persona@person.com")
   end
 
   let!(:person1) do
     FactoryGirl.create(:user,
-    email: "person1@person.com",
-    name: "Person 1")
+      email: "person1@person.com",
+      name: "Person 1")
   end
 
   let!(:blue_dragon) do
@@ -18,16 +18,16 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
 
   let!(:review1) do
     FactoryGirl.create(:review,
-    user: user,
-    restaurant: blue_dragon)
+      user: user,
+      restaurant: blue_dragon)
   end
 
   let!(:review2) do
     FactoryGirl.create(:review,
-    rating: 4,
-    body: "Pretty good option for Dine Out.",
-    user: person1,
-    restaurant: blue_dragon)
+      rating: 4,
+      body: "Pretty good option for Dine Out.",
+      user: person1,
+      restaurant: blue_dragon)
   end
 
   describe "GET#index" do
