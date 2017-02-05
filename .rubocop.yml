@@ -283,5 +283,6 @@ Metrics/AbcSize:
   Enabled: false
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'context', 'scenario', 'feature', 'configure']
+  ExcludedMethods: ['describe', 'context', 'scenario', 'feature', 'configure',
+    'xfeature']
   Exclude: ['db/seeds.rb']
