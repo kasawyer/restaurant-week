@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     @new_review.user = current_user
     if user_signed_in?
       if @new_review.save
-        flash.now[:notice] = "Review added successfully"
+        flash[:notice] = "Review added successfully!"
         redirect_to restaurant_path(@restaurant)
       else
         flash.now[:notice] = @new_review.errors.full_messages.to_sentence

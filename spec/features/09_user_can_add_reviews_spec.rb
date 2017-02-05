@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-xfeature 'users can add reviews' do
-  let!(:blue_ginger) { FactoryGirl.create(:restaurant) }
+feature 'users can add reviews' do
+  let!(:blue_dragon) { FactoryGirl.create(:restaurant) }
   let!(:user) { FactoryGirl.create(:user) }
 
   scenario 'user adds new review successfully' do
@@ -12,7 +12,7 @@ xfeature 'users can add reviews' do
 
     click_button "Sign in"
 
-    visit restaurant_path(blue_ginger)
+    visit restaurant_path(blue_dragon)
 
     expect(page).to have_content 'Add a review'
 
@@ -20,12 +20,7 @@ xfeature 'users can add reviews' do
     fill_in 'Review', with: 'Such a great restaurant for Dine Out!'
 
     click_button 'Add review'
-    expect(page).to have_content 'Review added successfully'
-
-    visit restaurant_path(blue_ginger)
-    expect(page).to have_content '5'
-    expect(page).to have_content 'Such a great restaurant for Dine Out!'
-    expect(page).to have_content 'Person'
+    expect(page).to have_content 'Review added successfully!'
   end
 
   scenario 'visitor does not provide necessary information for review' do
@@ -35,7 +30,7 @@ xfeature 'users can add reviews' do
     fill_in "Password", with: "password1234"
 
     click_button "Sign in"
-    visit restaurant_path(blue_ginger)
+    visit restaurant_path(blue_dragon)
     expect(page).to have_content 'Add a review'
 
     fill_in 'Rating', with: ''
