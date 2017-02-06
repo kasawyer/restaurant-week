@@ -21,6 +21,11 @@ class RestaurantsController < ApplicationController
     end
     if !@restaurant.reviews.empty?
       @reviews = @restaurant.reviews.order("updated_at DESC").all
+      @review_sum = 0
+      @restaurant.reviews.each do |review|
+        @review_sum += review.rating
+      end
+      @average_rating = @review_sum/(@restaurant.reviews.length).to_f
       if !@edit_review.nil?
         @edit_review = @restaurant.reviews.find(params[:review_id])
       end

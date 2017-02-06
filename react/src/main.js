@@ -4,7 +4,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-// import RestaurantList from './components/RestaurantList';
+import FaveDined from './components/FaveDined';
 
 $(function() {
   if (document.getElementById('review-list')) {
@@ -13,10 +13,10 @@ $(function() {
       document.getElementById('review-list')
     );
   }
-  // if (document.getElementById('restaurant-list')) {
-  //   ReactDOM.render(
-  //     <RestaurantList />,
-  //     document.getElementById('restaurant-list')
-  //   );
-  // }
+  if (document.getElementById('fave-dined')) {
+    ReactDOM.render(
+      <FaveDined />,
+      document.getElementById('fave-dined')
+    );
+  }
 });
