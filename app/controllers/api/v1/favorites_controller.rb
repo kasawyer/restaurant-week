@@ -4,41 +4,39 @@ class Api::V1::FavoritesController < ApplicationController
   def index
     @user = current_user
     @restaurant = Restaurant.find(params[:restaurant_id])
-    # @favorites = Favorite.all
-    render json: @restaurant
+    @favorite = Favorite.find_or_create_by(user: @user, restaurant: @restaurant)
+    render json: { favorite: @favorite }
   end
 
-  def create
+  def update
     favorite_data = JSON.parse(request.body.read)
     @restaurant = Restaurant.find(params[:restaurant_id])
     @user = User.find(favorite_data["favorite"]["user_id"])
-    @existing_favorite = Favorite.find_by(user: @user, restaurant: @restaurant)
-    if !@existing_favorite.nil?
-      @existing_favorite.update(marked: favorite_data["favorite"]["marked"])
-      # render json: @existing_favorite
+    @favorite = Favorite.find_by(user: @user, restaurant: @restaurant)
+      @favorite.update!(marked: favorite_data["favorite"]["marked"])
       render json: {
-        favorite: @existing_favorite,
+        favorite: @favorite,
         message: "#{@restaurant.name} added to favorites"
       }
-    # else
-    #   @favorite = Favorite.new(
-    #     restaurant: @restaurant,
-    #     user: @user,
-    #     marked: favorite_data["favorite"]["marked"]
-    #   )
-    #   if @favorite.save
-    #     # render json: @favorite
-    #     render json: {
-    #       favorite: @favorite,
-    #       message: "Favorites updated success"
-    #     }
-    #   else
-    #     render json: { message: "Did not work" }, status: 404
-    #   end
-    end
   end
 end
 
+# else
+#   @favorite = Favorite.new(
+#     restaurant: @restaurant,
+#     user: @user,
+#     marked: favorite_data["favorite"]["marked"]
+#   )
+#   if @favorite.save
+#     # render json: @favorite
+#     render json: {
+#       favorite: @favorite,
+#       message: "Favorites updated success"
+#     }
+#   else
+#     render json: { message: "Did not work" }, status: 404
+#   end
+# end
 
 
     # @favorite = Favorite.find(params[:id])

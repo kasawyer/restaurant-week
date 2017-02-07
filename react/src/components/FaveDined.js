@@ -12,10 +12,8 @@ class FaveDined extends Component {
       currentUserId: parseInt(this.props.currentUserId),
       admin: this.props.admin,
       favoriteId: parseInt(this.props.favoriteId),
-      // favorite: this.props.favorite,
       message: "",
-      // marked: this.props.marked || false,
-      favorite: ""
+      marked: ""
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getFavorite = this.getFavorite.bind(this);
@@ -27,7 +25,7 @@ class FaveDined extends Component {
   }
 
   getFavorite() {
-    fetch(`/api/v1/restaurants/${this.state.restaurantId}/favorites`)
+    fetch(`/api/v1/restaurants/${this.state.restaurantId}/favorites.json`)
     .then(response => {
       if (response.ok) {
         return response;
@@ -39,8 +37,9 @@ class FaveDined extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      let favorite = body[0];
-      this.setState({ favorite: favorite });
+      let favorite = body.favorite;
+      let marked = favorite.marked;
+      this.setState({ marked: marked });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

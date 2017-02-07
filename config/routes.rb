@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :restaurants, only: [:index, :show] do
         resources :reviews, only: [:index, :destroy]
-        resources :favorites, only: [:index, :create]
+        resources :favorites, only: [:index, :update]
       end
       resources :reviews, only: [:index, :update] do
         get 'total_votes'
