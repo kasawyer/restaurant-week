@@ -1,56 +1,25 @@
 /*jshint esversion: 6 */
 
 import React, { Component } from 'react';
-import Favorite from './Favorite';
-// import Dined from './Dined';
+import FaveDined from './FaveDined';
 
 class Restaurant extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      user: "",
-      marked: false,
-      message: ""
     };
-    this.handleFavorite = this.handleFavorite.bind(this);
-  }
-
-  handleFavorite(event) {
-    let favoriteData = {
-      'favorite': {
-        'marked': true,
-        'current_user_id': this.props.currentUserId
-      }
-    };
-    let jsonStringData = JSON.stringify(favoriteData);
-    fetch(`/api/v1/restaurants/${this.props.restaurant.id}/favorites.json`, {
-      method: 'post',
-      body: jsonStringData
-    })
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status}, (${response.statusText})`;
-        let error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      this.setState({ marked: event.target.marked });
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
     return (
-        <div className="fave-dined">
-          <Favorite
-          handleFavorite={this.handleFavorite}
-          />
-        </div>
-    )
+      <FaveDined
+      restaurantId={document.getElementById('restaurant-id').value}
+      favoriteId={document.getElementById('favorite-id').value}
+      marked={document.getElementById('marked').value}
+      currentUserId={document.getElementById('current-user-id').value}
+      admin={document.getElementById('admin').value}
+      />
+    );
   }
 }
 

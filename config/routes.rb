@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :users
 
-  resources :users, only: [:index, :destroy]
+  resources :users, only: [:index, :destroy] do
+    resources :favorites, only: [:index]
+  end
 
   resources :restaurants, only: [:index, :show] do
     resources :reviews, only: [:index, :create]
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :restaurants, only: [:index, :show] do
         resources :reviews, only: [:index, :destroy]
-        resources :favorites, only: [:update]
+        resources :favorites, only: [:index, :create]
       end
       resources :reviews, only: [:index, :update] do
         get 'total_votes'

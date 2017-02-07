@@ -24,13 +24,20 @@
       <p><%= @restaurant.special_notes %></p>
     <% end %>
 
-    <% if !@restaurant.reviews.nil? %>
-      <p>Average rating: <%= @average_rating %></p>
+    <% if !@restaurant.reviews.empty? %>
+      <p>Average rating: <%= @average_rating %> / 5</p>
     <% end %>
 
     <br/>
-    <div id="fave-dined">
+    <div id="restaurant">
       <input type="hidden" id="restaurant-id" value="<%= @restaurant.id %>" />
+      <% if current_user.favorites %>
+      <input type="hidden" id="favorite-id" value="<%= current_user.favorites[0].id %>" />
+      <input type="hidden" id="marked" value="<%= current_user.favorites[0].marked %>" />
+      <% else %>
+      <input type="hidden" id="favorite-id" value="0" />
+      <% end %>
+      <input type="hidden" id="restaurant" value="<%= @restaurant %>" />
       <% if current_user %>
       <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
       <% else %>
