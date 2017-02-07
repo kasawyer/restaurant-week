@@ -16,11 +16,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
-    # @user = current_user
     @favorite = Favorite.find_or_create_by(user_id: current_user.id, restaurant_id: @restaurant.id)
-    # if @favorite.nil?
-    #   @favorite = Favorite.create(user_id: current_user.id, restaurant_id: @restaurant.id)
-    # end
     if @edit_review.nil?
       @new_review = Review.new
     end

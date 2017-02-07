@@ -12,7 +12,6 @@ class FaveDined extends Component {
       currentUserId: parseInt(this.props.currentUserId),
       admin: this.props.admin,
       favoriteId: parseInt(this.props.favoriteId),
-      message: "",
       marked: ""
     };
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -25,7 +24,9 @@ class FaveDined extends Component {
   }
 
   getFavorite() {
-    fetch(`/api/v1/restaurants/${this.state.restaurantId}/favorites.json`)
+    fetch(`/api/v1/restaurants/${this.state.restaurantId}/favorites.json`, {
+      credentials: 'same-origin'
+    })
     .then(response => {
       if (response.ok) {
         return response;
@@ -38,8 +39,8 @@ class FaveDined extends Component {
     .then(response => response.json())
     .then(body => {
       let favorite = body.favorite;
-      let marked = favorite.marked;
-      this.setState({ marked: marked });
+      let isMarked = favorite.marked;
+      this.setState({ marked: isMarked });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -70,10 +71,8 @@ class FaveDined extends Component {
     .then(response => response.json())
     .then(body => {
       let favorite = body.favorite;
-      let message = body.message;
       this.setState({
         marked: favorite.marked,
-        message: message
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -83,7 +82,6 @@ class FaveDined extends Component {
     return (
       <div className="fave-dined">
         <Favorite
-        // favorite={this.state.favorite}
         key={this.state.favoriteId}
         handleFavorite={this.handleFavorite}
         currentUserId={this.state.currentUserId}

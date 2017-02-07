@@ -9,3 +9,10 @@ const Favorite = props => {
 }
 
 export default Favorite;
+
+
+import React, { Component } from 'react';
+import Favorite from './Favorite';
+// import Dined from './Dined';
+
+class FaveDined extends Component {

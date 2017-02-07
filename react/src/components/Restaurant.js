@@ -15,7 +15,6 @@ class Restaurant extends Component {
       <FaveDined
       restaurantId={document.getElementById('restaurant-id').value}
       favoriteId={document.getElementById('favorite-id').value}
-      // marked={document.getElementById('marked').value}
       currentUserId={document.getElementById('current-user-id').value}
       admin={document.getElementById('admin').value}
       />
