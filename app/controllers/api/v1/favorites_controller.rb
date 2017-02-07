@@ -5,7 +5,7 @@ class Api::V1::FavoritesController < ApplicationController
     @user = current_user
     @restaurant = Restaurant.find(params[:restaurant_id])
     # @favorites = Favorite.all
-    # render json: { @favorites, @restaurant }
+    render json: @restaurant
   end
 
   def create
@@ -20,21 +20,21 @@ class Api::V1::FavoritesController < ApplicationController
         favorite: @existing_favorite,
         message: "#{@restaurant.name} added to favorites"
       }
-    else
-      @favorite = Favorite.new(
-        restaurant: @restaurant,
-        user: @user,
-        marked: favorite_data["favorite"]["marked"]
-      )
-      if @favorite.save
-        # render json: @favorite
-        render json: {
-          favorite: @favorite,
-          message: "Favorites updated success"
-        }
-      else
-        render json: { message: "Did not work" }, status: 404
-      end
+    # else
+    #   @favorite = Favorite.new(
+    #     restaurant: @restaurant,
+    #     user: @user,
+    #     marked: favorite_data["favorite"]["marked"]
+    #   )
+    #   if @favorite.save
+    #     # render json: @favorite
+    #     render json: {
+    #       favorite: @favorite,
+    #       message: "Favorites updated success"
+    #     }
+    #   else
+    #     render json: { message: "Did not work" }, status: 404
+    #   end
     end
   end
 end

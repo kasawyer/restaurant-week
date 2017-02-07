@@ -17,6 +17,10 @@ class UsersController < ApplicationController
     @user.avatar = user_params[:avatar]
 
     if @user.save
+      # @restaurants = Restaurant.all
+      # @restaurants.each do |restaurant|
+      #   @favorite = Favorite.create(user_id: @user.id, restaurant_id: restaurant.id, marked: false)
+      # end
       flash[:notice] = "User added successfully"
       redirect_to user_path(@user)
     else
