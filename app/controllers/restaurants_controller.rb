@@ -17,6 +17,7 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     @favorite = Favorite.find_or_create_by(user_id: current_user.id, restaurant_id: @restaurant.id)
+    @dined = Dined.find_or_create_by(user_id: current_user.id, restaurant_id: @restaurant.id)
     if @edit_review.nil?
       @new_review = Review.new
     end

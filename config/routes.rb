@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :restaurants, only: [:index, :show] do
         resources :reviews, only: [:index, :destroy]
         resources :favorites, only: [:index, :update]
+        resources :dineds, only: [:index, :update]
       end
       resources :reviews, only: [:index, :update] do
         get 'total_votes'
