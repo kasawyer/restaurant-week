@@ -23,6 +23,21 @@
     <% if !@restaurant.special_notes.nil? %>
       <p><%= @restaurant.special_notes %></p>
     <% end %>
+
+    <% if !@restaurant.reviews.empty? %>
+      <p>Average rating: <%= @average_rating %> / 5</p>
+    <% end %>
+
+    <br/>
+    <div id="restaurant">
+      <input type="hidden" id="restaurant-id" value="<%= @restaurant.id %>" />
+      <% if current_user %>
+      <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
+      <% else %>
+      <input type="hidden" id="current-user-id" value="0" />
+      <% end %>
+      <input type="hidden" id="admin" value="<%= admin_signed_in? %>" />
+    </div>
     </li>
   </ul>
 

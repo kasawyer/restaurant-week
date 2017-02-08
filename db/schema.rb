@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202200955) do
+ActiveRecord::Schema.define(version: 20170207215838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,24 @@ ActiveRecord::Schema.define(version: 20170202200955) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "dineds", force: :cascade do |t|
+    t.integer "user_id",                       null: false
+    t.integer "restaurant_id",                 null: false
+    t.boolean "marked",        default: false, null: false
+    t.index ["restaurant_id"], name: "index_dineds_on_restaurant_id", using: :btree
+    t.index ["user_id", "restaurant_id"], name: "index_dineds_on_user_id_and_restaurant_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_dineds_on_user_id", using: :btree
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id",                       null: false
+    t.integer "restaurant_id",                 null: false
+    t.boolean "marked",        default: false, null: false
+    t.index ["restaurant_id"], name: "index_favorites_on_restaurant_id", using: :btree
+    t.index ["user_id", "restaurant_id"], name: "index_favorites_on_user_id_and_restaurant_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
 
   create_table "restaurants", force: :cascade do |t|

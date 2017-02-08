@@ -82,6 +82,7 @@ class Restaurant < ApplicationRecord
   ].freeze
 
   has_many :reviews
+  has_many :favorites
 
   validates :name, presence: true
   validates :image_url, presence: true

@@ -28,6 +28,9 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if admin_signed_in?
+      @user.reviews.each do |review|
+        review.destroy
+      end
       @user.destroy
       redirect_to users_path
       flash[:notice] = "User was successfully deleted."
