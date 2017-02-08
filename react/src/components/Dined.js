@@ -1,28 +1,19 @@
 /*jshint esversion: 6 */
 
-import React, { Component } from 'react';
+import React from 'react';
 
-class Dined extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      marked: this.props.dinedMarked
-    };
+const Dined = props => {
+  let dinedIcon;
+  if (props.dinedMarked === true) {
+    dinedIcon = <i className="fa fa-cutlery fa-2x" aria-hidden="true" onClick={() => props.handleDined()}></i>
+  } else {
+    dinedIcon = <i className="fa fa-cutlery fa-1x" aria-hidden="true" onClick={() => props.handleDined()}></i>
   }
-
-  render() {
-    let dinedIcon;
-    if (this.props.dinedMarked === true) {
-      dinedIcon = <i className="fa fa-cutlery fa-2x" aria-hidden="true" onClick={() => this.props.handleDined()}></i>
-    } else {
-      dinedIcon = <i className="fa fa-cutlery fa-1x" aria-hidden="true" onClick={() => this.props.handleDined()}></i>
-    }
-    return (
-      <div>
+  return(
+    <div>
       {dinedIcon}
-      </div>
-    )
-  }
+    </div>
+  );
 }
 
 export default Dined;
