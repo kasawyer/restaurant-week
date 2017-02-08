@@ -16,8 +16,6 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
-    @favorite = Favorite.find_or_create_by(user_id: current_user.id, restaurant_id: @restaurant.id)
-    @dined = Dined.find_or_create_by(user_id: current_user.id, restaurant_id: @restaurant.id)
     if @edit_review.nil?
       @new_review = Review.new
     end
@@ -27,7 +25,7 @@ class RestaurantsController < ApplicationController
       @restaurant.reviews.each do |review|
         @review_sum += review.rating
       end
-      @average_rating = @review_sum/(@restaurant.reviews.length).to_f
+      @average_rating = @review_sum / @restaurant.reviews.length.to_f
       if !@edit_review.nil?
         @edit_review = @restaurant.reviews.find(params[:review_id])
       end

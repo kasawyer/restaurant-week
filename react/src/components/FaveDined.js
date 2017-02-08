@@ -11,8 +11,6 @@ class FaveDined extends Component {
       restaurantId: parseInt(this.props.restaurantId),
       currentUserId: parseInt(this.props.currentUserId),
       admin: this.props.admin,
-      favoriteId: parseInt(this.props.favoriteId),
-      dinedId: parseInt(this.props.dinedId),
       faveMarked: "",
       dinedMarked: ""
     };
@@ -75,7 +73,6 @@ class FaveDined extends Component {
   handleFavorite() {
     let favoriteData = {
       'favorite' : {
-        'favorite_id': this.state.favoriteId,
         'user_id': this.state.currentUserId,
         'restaurant_id': this.state.restaurantId,
         'marked': !this.state.faveMarked
@@ -99,6 +96,7 @@ class FaveDined extends Component {
     .then(body => {
       let favorite = body.favorite;
       this.setState({
+        favoriteId: favorite.id,
         faveMarked: favorite.marked,
       });
     })
@@ -108,7 +106,6 @@ class FaveDined extends Component {
   handleDined() {
     let dinedData = {
       'dined' : {
-        'dined_id': this.state.dinedId,
         'user_id': this.state.currentUserId,
         'restaurant_id': this.state.restaurantId,
         'marked': !this.state.dinedMarked
@@ -132,6 +129,7 @@ class FaveDined extends Component {
     .then(body => {
       let dined = body.dined;
       this.setState({
+        dinedId: dined.id,
         dinedMarked: dined.marked,
       });
     })

@@ -31,8 +31,6 @@
     <br/>
     <div id="restaurant">
       <input type="hidden" id="restaurant-id" value="<%= @restaurant.id %>" />
-      <input type="hidden" id="favorite-id" value="<%= @favorite.id %>" />
-      <input type="hidden" id="dined-id" value="<%= @dined.id %>" />
       <% if current_user %>
       <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
       <% else %>
