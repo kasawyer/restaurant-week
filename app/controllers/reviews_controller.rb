@@ -23,7 +23,9 @@ class ReviewsController < ApplicationController
     @reviews.each do |review|
       @restaurant_id = review.restaurant_id
       @restaurant = Restaurant.find(@restaurant_id)
-      @restaurants << @restaurant
+      unless @restaurants.include?(@restaurant)
+        @restaurants << @restaurant
+      end
     end
   end
 
