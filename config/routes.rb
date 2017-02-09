@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :destroy] do
     resources :favorites, only: [:index]
+    resources :dineds, only: [:index]
+    resources :reviews, only: [:index]
   end
 
   resources :restaurants, only: [:index, :show] do

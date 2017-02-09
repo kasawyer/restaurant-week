@@ -5,14 +5,22 @@ import React from 'react';
 const Dined = props => {
   let dinedIcon;
   if (props.dinedMarked === true) {
-    dinedIcon = <i className="fa fa-cutlery fa-2x" aria-hidden="true" onClick={() => props.handleDined()}></i>
+    dinedIcon =
+    <div className="dined">
+      <i className="fa fa-cutlery fa-2x" id="dined" aria-hidden="true" onClick={() => props.handleDined()}></i>
+      <p id="dined-text">Unmark dined</p>
+    </div>
   } else {
-    dinedIcon = <i className="fa fa-cutlery fa-1x" aria-hidden="true" onClick={() => props.handleDined()}></i>
+    dinedIcon =
+    <div className="dined">
+      <i className="fa fa-cutlery fa-2x" id="no-dined" aria-hidden="true" onClick={() => props.handleDined()}></i>
+      <p id="dined-text">Mark dined</p>
+    </div>
   }
   return(
-    <div>
+    <span className="fave-dined-span">
       {dinedIcon}
-    </div>
+    </span>
   );
 }
 

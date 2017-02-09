@@ -16,6 +16,19 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def index
+    @user = current_user
+    @reviews = @user.reviews
+    @restaurants = []
+    @reviews.each do |review|
+      @restaurant_id = review.restaurant_id
+      @restaurant = Restaurant.find(@restaurant_id)
+      unless @restaurants.include?(@restaurant)
+        @restaurants << @restaurant
+      end
+    end
+  end
+
   private
 
   def review_params
