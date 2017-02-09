@@ -31,10 +31,10 @@
 
         <%= button_to "More information", restaurant, method: :get %>
         <br/>
-        <% if @reviews %>
+        <% if !restaurant.reviews.empty? %>
           <h3>My reviews</h3>
-          <% @reviews.each do |review| %>
-            <p><%= review.rating %>: <%= review.body %></p>
+          <% restaurant.reviews.each do |review| %>
+            <p><%= review.rating %>/5: <%= review.body %></p>
           <% end %>
         <% end %>
       <% end %>

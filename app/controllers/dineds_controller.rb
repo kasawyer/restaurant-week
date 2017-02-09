@@ -8,7 +8,6 @@ class DinedsController < ApplicationController
       @restaurant_id = dined.restaurant_id
       @restaurant = Restaurant.find(@restaurant_id)
       @restaurants << @restaurant
-      @reviews = @restaurant.reviews
     end
   end
 
