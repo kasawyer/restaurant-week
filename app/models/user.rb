@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :votes
   has_many :reviews
   has_many :favorites
+  has_many :dineds
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

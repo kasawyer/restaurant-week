@@ -44,6 +44,7 @@
                     <li><%= link_to "Edit user list", users_path, method: :get %></li>
                   <% elsif user_signed_in? %>
                     <li><%= link_to "My favorites", user_favorites_path(current_user), method: :get %></li>
+                    <li><%= link_to "My dined", user_dineds_path(current_user), method: :get %></li>
                     <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
                     <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
                   <% else %>

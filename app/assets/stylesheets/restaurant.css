@@ -245,3 +245,16 @@ div.fave-dined {
   font-size: 16px;
   margin-top: 5px;
 }
+
+.restaurant-list-item-dined {
+  background-color: white;
+  margin: 10px 25px 10px 10px;
+  color: #E47267;
+  padding: 10px;
+  font-size: 20px;
+  list-style: none;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #03A093;
+  height: auto;
+}

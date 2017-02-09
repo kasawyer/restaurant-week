@@ -1,12 +1,12 @@
 <div class="page-body">
-  <h1>Favorites</h1>
+  <h1>Dined</h1>
 
   <ul class="restaurant-info">
     <% if @restaurants.empty? %>
-      <p class="search-results">You have no favorited restaurants.</p>
+      <p class="search-results">You have no restaurants marked as dined.</p>
     <% else %>
       <% @restaurants.each do |restaurant| %>
-      <li class="restaurant-list-item">
+      <li class="restaurant-list-item-dined">
         <img src="<%= restaurant.image_url %>">
         <h3><%= restaurant.name %></h3>
         <p><%= restaurant.region %></p>
@@ -31,7 +31,12 @@
 
         <%= button_to "More information", restaurant, method: :get %>
         <br/>
-        <br/>
+        <% if @reviews %>
+          <h3>My reviews</h3>
+          <% @reviews.each do |review| %>
+            <p><%= review.rating %>: <%= review.body %></p>
+          <% end %>
+        <% end %>
       <% end %>
       </li>
     <% end %>
