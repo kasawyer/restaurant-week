@@ -185,12 +185,18 @@ a {
   margin-top: 10px;
 }
 
-.search-button {
-  vertical-align: top;
-  display: inline;
-  margin-right: 0px;
-  margin-left: 10px;
-  height: 39px;
+#search-form {
+  text-align: center;
+}
+
+#keyword {
+  width: 200px;
+  /*margin-right: 10px;*/
+  border-radius: 5px;
+}
+
+li#filter-search-button {
+  width: 50px;
 }
 
 .add {
@@ -207,6 +213,11 @@ a {
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
   -webkit-padding-start: 20px;
+}
+
+li.pagecurrent {
+  font-size: 20px;
+  color: #03A093;
 }
 
 #fave {
