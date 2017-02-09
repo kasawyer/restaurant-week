@@ -93,7 +93,7 @@ feature "user visits home page" do
 
     visit "/restaurants"
 
-    fill_in "Keywords", with: "80"
+    fill_in "Name of restaurant", with: "80"
     click_button "Search"
 
     expect(page).to have_content("80 Thoreau")
