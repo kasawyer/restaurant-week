@@ -4,7 +4,7 @@ feature 'users can add reviews' do
   let!(:blue_dragon) { FactoryGirl.create(:restaurant) }
   let!(:user) { FactoryGirl.create(:user) }
 
-  scenario 'user adds new review successfully' do
+  xscenario 'user adds new review successfully' do
     visit new_user_session_path
 
     fill_in "Email", with: "person@person.com"
@@ -23,7 +23,7 @@ feature 'users can add reviews' do
     expect(page).to have_content 'Review added successfully!'
   end
 
-  scenario 'visitor does not provide necessary information for review' do
+  xscenario 'visitor does not provide necessary information for review' do
     visit new_user_session_path
 
     fill_in "Email", with: "person@person.com"

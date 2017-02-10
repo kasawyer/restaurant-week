@@ -2,10 +2,13 @@
 
   <ul class="restaurant-info">
     <li class="restaurant-list-item-show">
-    <img src="<%= @restaurant.image_url %>">
+    <img src="<%= @restaurant.image_url %>" class="restaurant-image">
     <h3><%= @restaurant.name %></h3>
     <p><%= @restaurant.region %></p>
     <p><%= @restaurant.address %></p>
+    <% if @phone %>
+      <p><%= @phone %></p>
+    <% end %>
     <p><%= @restaurant.cuisine %></p>
 
     <% if !@restaurant.lunch_price.nil? && !@restaurant.lunch_menu_link.nil? %>
@@ -20,12 +23,8 @@
       <p>Dinner: <%= @restaurant.dinner_price %></p>
     <% end %>
 
-    <% if !@restaurant.special_notes.nil? %>
-      <p><%= @restaurant.special_notes %></p>
-    <% end %>
-
     <% if !@restaurant.reviews.empty? %>
-      <p>Average rating: <%= @average_rating %> / 5</p>
+      <p>DineOut+ rating: <%= @average_rating.round(2) %> / 5</p>
     <% end %>
 
     <div id="restaurant">
@@ -37,6 +36,21 @@
       <% end %>
       <input type="hidden" id="admin" value="<%= admin_signed_in? %>" />
     </div>
+    <br/>
+
+    <% if @yelp_info %>
+      <div class="yelp-info">
+        <a href="<%= @yelp_url %>" target="_blank">
+          <img src="https://s3-media3.fl.yelpcdn.com/assets/srv0/styleguide/24e1fe240f00/assets/img/brand_guidelines/yelp_fullcolor_outline.png" class="yelp-image">
+          <img src="<%= @rating_img %>" class="yelp-stars">
+          <span>Out of <%= @review_count %> reviews on Yelp</span>
+        </a>
+      </div>
+    <% end %>
+
+    <% if !@restaurant.special_notes.nil? %>
+    <p><%= @restaurant.special_notes %></p>
+    <% end %>
     </li>
   </ul>
 

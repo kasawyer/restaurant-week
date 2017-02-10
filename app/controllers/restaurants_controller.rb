@@ -30,6 +30,34 @@ class RestaurantsController < ApplicationController
         @edit_review = @restaurant.reviews.find(params[:review_id])
       end
     end
+
+    client = Yelp::Client.new(
+      consumer_key: ENV["YELP_CONSUMER_KEY"],
+      consumer_secret: ENV["YELP_CONSUMER_SECRET"],
+      token: ENV["YELP_TOKEN"],
+      token_secret: ENV["YELP_TOKEN_SECRET"]
+    )
+
+    params = {
+      term: @restaurant.name,
+      category_filter: 'restaurants',
+      limit: 1
+    }
+
+    response = client.search('MA', params)
+    @restaurant_array = @restaurant.name.split
+    @name_check = @restaurant_array[0]
+    @yelp_name = response.businesses[0].name
+    if @yelp_name.include?(@name_check)
+      @yelp_info = response
+    end
+
+    if @yelp_info
+      @phone = @yelp_info.businesses[0].display_phone
+      @rating_img = @yelp_info.businesses[0].rating_img_url_large
+      @review_count = @yelp_info.businesses[0].review_count
+      @yelp_url = @yelp_info.businesses[0].url
+    end
   end
 
   private
