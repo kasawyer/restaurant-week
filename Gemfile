@@ -37,6 +37,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'dotenv'
   gem 'factory_girl', require: false
   gem 'factory_girl_rails', require: false
   gem 'launchy'
