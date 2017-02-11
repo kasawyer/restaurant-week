@@ -9,6 +9,25 @@
   color: #E47267;
 }
 
+.orbit-caption {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+#button {
+  display: inline-block;
+  margin: 5px;
+  align-items: center;
+}
+
+#orbit-buttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.clearFloat {
+  clear: both;
+}
+
 .top-bar {
   background-image: url("/assets/10347547-cutlery-knife-fork-web-icon-flat-design-seamless-gray-pattern 3.jpg");
   background-size: 450px;

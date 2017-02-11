@@ -26,6 +26,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^1.7.0",
+    "motion-ui": "^1.2.2",
     "phantomjs-prebuilt": "^2.1.7",
     "react-addons-test-utils": "^15.0.2",
     "redux-devtools": "^3.2.0"
