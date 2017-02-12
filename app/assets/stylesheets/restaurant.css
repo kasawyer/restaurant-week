@@ -5,12 +5,20 @@
   color: black;
 }
 
+.homepage-body.top-bar-right {
+  visibility: hidden;
+}
+
 .menu a:hover {
   color: #E47267;
 }
 
 .orbit-caption {
   background: rgba(0, 0, 0, 0.8);
+}
+
+.orbit-caption h4 {
+  font-size: 24px;
 }
 
 #button {
@@ -253,6 +261,7 @@ li#filter-search-button {
 li.pagecurrent {
   font-size: 20px;
   color: #03A093;
+  font-weight: bold;
 }
 
 #fave {
