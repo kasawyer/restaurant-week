@@ -14,9 +14,13 @@ class Review extends Component {
       editing: false,
       rating: this.props.review.rating,
       body: this.props.review.body,
+      voteId: parseFloat(this.props.voteId),
+      voteValue: parseFloat(this.props.voteValue),
       message: ""
     };
     this.componentWillMount = this.componentWillMount.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.getVotes = this.getVotes.bind(this);
     this.handleUpvote = this.handleUpvote.bind(this);
     this.handleDownvote = this.handleDownvote.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -56,7 +60,32 @@ class Review extends Component {
       .then(body => {
         let total_votes = body;
         this.setState({ total_votes: total_votes });
-      })
+      });
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  componentDidMount() {
+    this.getVotes();
+  }
+
+  getVotes() {
+    fetch(`/api/v1/reviews/${this.props.review.id}/votes.json`, {
+      credentials: 'same-origin'
+    })
+    .then(response => {
+      if (response.ok && response != 204) {
+        return response;
+      } else {
+        let errorMessage = `${response.status}, (${response.statusText})`;
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let value = body.value;
+      this.setState({ voteValue: value });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -64,13 +93,13 @@ class Review extends Component {
   handleUpvote() {
     let voteData = {
       'vote': {
-        'value': 1,
+        'value': this.state.voteValue + 1,
         'current_user_id': this.props.currentUserId
       }
     };
     let jsonStringData = JSON.stringify(voteData);
-    fetch(`/api/v1/reviews/${this.props.review.id}/votes.json`, {
-      method: 'post',
+    fetch(`/api/v1/reviews/${this.props.review.id}/votes/${this.state.voteId}.json`, {
+      method: 'put',
       body: jsonStringData
     })
     .then(response => {
@@ -84,8 +113,14 @@ class Review extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      let total_votes = body;
-      this.setState({ total_votes: total_votes })
+      let value = body.value;
+      let total_votes = body.total_votes;
+      this.setState({ total_votes: total_votes });
+      if (this.state.voteValue == -1 || this.state.voteValue === 0) {
+        this.setState({ voteValue: value });
+      } else {
+        this.setState({ voteValue: 1});
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -93,13 +128,13 @@ class Review extends Component {
   handleDownvote() {
     let voteData = {
       'vote': {
-        'value': -1,
+        'value': this.state.voteValue - 1,
         'current_user_id': this.props.currentUserId
       }
     };
     let jsonStringData = JSON.stringify(voteData);
-    fetch(`/api/v1/reviews/${this.props.review.id}/votes.json`, {
-      method: 'post',
+    fetch(`/api/v1/reviews/${this.props.review.id}/votes/${this.state.voteId}.json`, {
+      method: 'put',
       body: jsonStringData
     })
     .then(response => {
@@ -113,8 +148,14 @@ class Review extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      let total_votes = body;
-      this.setState({ total_votes: total_votes })
+      let value = body.value;
+      let total_votes = body.total_votes;
+      this.setState({ total_votes: total_votes });
+      if (this.state.voteValue == 1 || this.state.voteValue === 0) {
+        this.setState({ voteValue: value });
+      } else {
+        this.setState({ voteValue: -1});
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -172,7 +213,6 @@ class Review extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-
   render() {
     let form;
     if (this.state.editing && (this.props.currentUserId === this.props.review.user_id || this.props.admin === 'true')) {
@@ -197,14 +237,20 @@ class Review extends Component {
         <div className="vote-buttons">
           <Upvote
           handleUpvote={this.handleUpvote}
+          voteValue={this.state.voteValue}
           />
           <br />
           <p>{this.state.total_votes}</p>
           <Downvote
           handleDownvote={this.handleDownvote}
+          voteValue={this.state.voteValue}
           />
         </div>
         <div className="review-body">
+          <p>
+          <span className="prompt">Created at: </span>
+          {new Date(this.props.review.created_at).toLocaleString()}
+          </p>
           <p>
           <span className="prompt">User: </span>
           {this.state.user.name}
@@ -213,7 +259,10 @@ class Review extends Component {
             <span className="prompt">Rating: </span>
             {this.state.rating}
           </p>
-          <p>{this.state.body}</p>
+          <p>
+            <span className="prompt">Review: </span>
+            {this.state.body}
+          </p>
           {editButton}
           {deleteButton}
           <br/>
