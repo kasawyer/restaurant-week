@@ -4,7 +4,8 @@ feature "user creates an account" do
 
   scenario "user signs up for new account successfully" do
     visit "/"
-    click_on "Sign up"
+    click_button("Log in", match: :first)
+    click_on("Sign up", match: :first)
 
     fill_in "Name", with: "Person"
     fill_in "Email", with: "person@person.com"
@@ -18,7 +19,8 @@ feature "user creates an account" do
 
   scenario "user tries to create an account with an unavailable email" do
     visit "/"
-    click_on "Sign up"
+    click_button("Log in", match: :first)
+    click_on("Sign up", match: :first)
 
     fill_in "Name", with: "Person"
     fill_in "Email", with: "person@person.com"
@@ -27,9 +29,10 @@ feature "user creates an account" do
 
     click_button "Sign up"
 
-    visit "/"
+    visit "/restaurants"
     click_on "Sign out"
-    click_on "Sign up"
+    click_button("Log in", match: :first)
+    click_on("Sign up", match: :first)
 
     fill_in "Name", with: "Person"
     fill_in "Email", with: "person@person.com"
@@ -42,7 +45,8 @@ feature "user creates an account" do
 
   scenario "user tries to create an account with invalid email format" do
     visit "/"
-    click_on "Sign up"
+    click_button("Log in", match: :first)
+    click_on("Sign up", match: :first)
 
     fill_in "Email", with: "persongmail.com"
     fill_in "Password", with: "password1234"
@@ -55,7 +59,8 @@ feature "user creates an account" do
 
   scenario "user tries to create an account without name, email or password" do
     visit "/"
-    click_on "Sign up"
+    click_button("Log in", match: :first)
+    click_on("Sign up", match: :first)
     fill_in "Email", with: ""
 
     click_button "Sign up"
@@ -69,7 +74,7 @@ feature "user creates an account" do
     FactoryGirl.create(:user)
 
     visit "/"
-    click_on "Sign in"
+    click_button("Log in", match: :first)
 
     fill_in "Email", with: "person@person.com"
     fill_in "Password", with: "password1234"
@@ -85,7 +90,7 @@ feature "user creates an account" do
     FactoryGirl.create(:user)
 
     visit "/"
-    click_on "Sign in"
+    click_button("Log in", match: :first)
 
     fill_in "Email", with: "person@person.com"
     fill_in "Password", with: "password1234"
@@ -93,12 +98,12 @@ feature "user creates an account" do
     click_button "Sign in"
 
     click_on "Sign out"
-    expect(page).to have_content "Sign in"
+    expect(page).to have_content "Log in"
   end
 
   scenario "user can't sign in with invalid password" do
     visit '/'
-    click_on "Sign in"
+    click_button("Log in", match: :first)
 
     fill_in "Email", with: "person@person.com"
     fill_in "Password", with: "password"
@@ -109,7 +114,8 @@ feature "user creates an account" do
 
   scenario "user creates an account with an avatar" do
     visit '/'
-    click_on "Sign up"
+    click_button("Log in", match: :first)
+    click_on("Sign up", match: :first)
 
     fill_in "Name", with: "Person"
     fill_in "Email", with: "person@person.com"

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root 'restaurants#index'
+  root 'homes#index'
 
   devise_for :admins
-  devise_for :users
+  devise_for :users, controllers: { registrations: :registrations }
 
   resources :users, only: [:index, :destroy] do
     resources :favorites, only: [:index]

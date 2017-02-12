@@ -5,7 +5,7 @@ feature "user edits an account" do
 
   scenario "user successfully edits an account" do
     visit "/"
-    click_on "Sign in"
+    click_button("Log in", match: :first)
 
     fill_in "Email", with: user.email
     fill_in "Password", with: "password1234"
@@ -30,7 +30,7 @@ feature "user edits an account" do
 
   scenario "user successfully delete an account" do
     visit "/"
-    click_on "Sign in"
+    click_button("Log in", match: :first)
 
     fill_in "Email", with: user.email
     fill_in "Password", with: "password1234"
@@ -46,7 +46,7 @@ feature "user edits an account" do
 
   scenario "user successfully changes password" do
     visit "/"
-    click_on "Sign in"
+    click_button("Log in", match: :first)
 
     fill_in "Email", with: user.email
     fill_in "Password", with: "password1234"
@@ -65,7 +65,7 @@ feature "user edits an account" do
 
   scenario "user successfully has changed a password" do
     visit "/"
-    click_on "Sign in"
+    click_button("Log in", match: :first)
 
     fill_in "Email", with: user.email
     fill_in "Password", with: "password1234"

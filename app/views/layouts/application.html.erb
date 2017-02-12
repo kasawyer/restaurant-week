@@ -13,10 +13,11 @@
   <header>
     <div class="top-bar">
       <div class="top-bar-left">
-      <span class="menu-text title"><a href="/">DineOut+</a></span><br/>
+      <span class="menu-text title"><a href="/restaurants">DineOut+</a></span><br/>
       <span class="menu-text" id="subtitle">March 5-10 & 12-17</span>
     </div>
 
+    <% unless @disable_topbar %>
       <div class="top-bar-right">
         <ul class="menu">
           <% if admin_signed_in? %>
@@ -46,6 +47,7 @@
                     <li><%= link_to "My favorites", user_favorites_path(current_user), method: :get %></li>
                     <li><%= link_to "My dined", user_dineds_path(current_user), method: :get %></li>
                     <li><%= link_to "My reviews", user_reviews_path(current_user), method: :get %></li>
+                    <li><a href="https://www.opentable.com/boston-restaurants" target="_blank">OpenTable</a></li>
                     <li><%= link_to "Account settings", edit_user_registration_path, method: :get %></li>
                     <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
                   <% else %>
@@ -59,6 +61,7 @@
           </li>
         </ul>
       </div>
+      <% end %>
     </div>
   </header>
 
