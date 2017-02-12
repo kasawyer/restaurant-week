@@ -79,6 +79,11 @@
       <input type="hidden" id="restaurant-id" value="<%= @restaurant.id %>" />
       <% if current_user %>
         <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
+        <% if @existing_vote %>
+          <input type="hidden" id="existing-vote" value="<%= @existing_vote.value %>" />
+        <% else %>
+          <input type="hidden" id="existing-vote" value="0" />
+        <% end %>
       <% else %>
         <input type="hidden" id="current-user-id" value="0" />
       <% end %>

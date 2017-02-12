@@ -80,6 +80,7 @@ class ReviewList extends Component {
         handleDelete={handleDelete}
         currentUserId={this.state.currentUserId}
         admin={this.state.admin}
+        vote={this.props.vote}
         />
       );
     }.bind(this));

@@ -16,6 +16,7 @@ class App extends Component {
       restaurantId={document.getElementById('restaurant-id').value}
       currentUserId={document.getElementById('current-user-id').value}
       admin={document.getElementById('admin').value}
+      vote={document.getElementById('existing-vote').value}
       />
     );
   }
