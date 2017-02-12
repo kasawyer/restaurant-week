@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
+    restaurants_path
+  end
+
+  def after_sign_up_path_for(_resource)
     restaurants_path
   end
 

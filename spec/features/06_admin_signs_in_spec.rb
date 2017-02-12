@@ -26,6 +26,7 @@ feature "admin signs into account" do
     click_button "Sign in"
 
     click_on "Admin sign out"
+    click_button("Enter", match: :first)
     expect(page).to have_content "Admin sign in"
   end
 
