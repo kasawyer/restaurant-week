@@ -42,7 +42,7 @@
         <% end %>
 
         <% if !restaurant.special_notes.nil? %>
-          <p><%= restaurant.special_notes %></p>
+          <p id="special-notes"><%= restaurant.special_notes %></p>
         <% end %>
 
         <%= button_to "More information", restaurant, method: :get %>

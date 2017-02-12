@@ -140,12 +140,10 @@ class FaveDined extends Component {
     return (
       <div className="fave-dined">
         <Favorite
-          key={this.state.favoriteId}
           handleFavorite={this.handleFavorite}
           faveMarked={this.state.faveMarked}
         />
         <Dined
-          key={this.state.dinedId}
           handleDined={this.handleDined}
           dinedMarked={this.state.dinedMarked}
         />
