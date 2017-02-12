@@ -14,8 +14,8 @@ class Review extends Component {
       editing: false,
       rating: this.props.review.rating,
       body: this.props.review.body,
-      voteId: parseInt(this.props.voteId),
-      voteValue: parseInt(this.props.voteValue),
+      voteId: parseFloat(this.props.voteId),
+      voteValue: parseFloat(this.props.voteValue),
       message: ""
     };
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -213,7 +213,6 @@ class Review extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-
   render() {
     let form;
     if (this.state.editing && (this.props.currentUserId === this.props.review.user_id || this.props.admin === 'true')) {
@@ -249,6 +248,10 @@ class Review extends Component {
         </div>
         <div className="review-body">
           <p>
+          <span className="prompt">Created at: </span>
+          {new Date(this.props.review.created_at).toLocaleString()}
+          </p>
+          <p>
           <span className="prompt">User: </span>
           {this.state.user.name}
           </p>
@@ -256,7 +259,10 @@ class Review extends Component {
             <span className="prompt">Rating: </span>
             {this.state.rating}
           </p>
-          <p>{this.state.body}</p>
+          <p>
+            <span className="prompt">Review: </span>
+            {this.state.body}
+          </p>
           {editButton}
           {deleteButton}
           <br/>

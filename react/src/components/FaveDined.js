@@ -8,8 +8,8 @@ class FaveDined extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurantId: parseInt(this.props.restaurantId),
-      currentUserId: parseInt(this.props.currentUserId),
+      restaurantId: parseFloat(this.props.restaurantId),
+      currentUserId: parseFloat(this.props.currentUserId),
       admin: this.props.admin,
       faveMarked: "",
       dinedMarked: ""
@@ -97,7 +97,7 @@ class FaveDined extends Component {
       let favorite = body.favorite;
       this.setState({
         favoriteId: favorite.id,
-        faveMarked: favorite.marked,
+        faveMarked: favorite.marked
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -130,7 +130,7 @@ class FaveDined extends Component {
       let dined = body.dined;
       this.setState({
         dinedId: dined.id,
-        dinedMarked: dined.marked,
+        dinedMarked: dined.marked
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
