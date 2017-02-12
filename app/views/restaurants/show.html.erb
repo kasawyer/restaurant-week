@@ -80,8 +80,10 @@
       <% if current_user %>
         <input type="hidden" id="current-user-id" value="<%= current_user.id %>" />
         <% if @existing_vote %>
-          <input type="hidden" id="existing-vote" value="<%= @existing_vote.value %>" />
+          <input type="hidden" id="existing-vote-value" value="<%= @existing_vote.value %>" />
+          <input type="hidden" id="existing-vote" value="<%= @existing_vote.id %>" />
         <% else %>
+          <input type="hidden" id="existing-vote-value" value="0" />
           <input type="hidden" id="existing-vote" value="0" />
         <% end %>
       <% else %>

@@ -14,7 +14,8 @@ class Review extends Component {
       editing: false,
       rating: this.props.review.rating,
       body: this.props.review.body,
-      voteValue: parseInt(this.props.vote),
+      voteId: parseInt(this.props.voteId),
+      voteValue: parseInt(this.props.voteValue),
       message: ""
     };
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -73,7 +74,7 @@ class Review extends Component {
       credentials: 'same-origin'
     })
     .then(response => {
-      if (response.ok) {
+      if (response.ok && response != 204) {
         return response;
       } else {
         let errorMessage = `${response.status}, (${response.statusText})`;
@@ -97,8 +98,8 @@ class Review extends Component {
       }
     };
     let jsonStringData = JSON.stringify(voteData);
-    fetch(`/api/v1/reviews/${this.props.review.id}/votes.json`, {
-      method: 'post',
+    fetch(`/api/v1/reviews/${this.props.review.id}/votes/${this.state.voteId}.json`, {
+      method: 'put',
       body: jsonStringData
     })
     .then(response => {
@@ -114,7 +115,12 @@ class Review extends Component {
     .then(body => {
       let value = body.value;
       let total_votes = body.total_votes;
-      this.setState({ total_votes: total_votes, voteValue: value })
+      this.setState({ total_votes: total_votes });
+      if (this.state.voteValue == -1 || this.state.voteValue === 0) {
+        this.setState({ voteValue: value });
+      } else {
+        this.setState({ voteValue: 1});
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -127,8 +133,8 @@ class Review extends Component {
       }
     };
     let jsonStringData = JSON.stringify(voteData);
-    fetch(`/api/v1/reviews/${this.props.review.id}/votes.json`, {
-      method: 'post',
+    fetch(`/api/v1/reviews/${this.props.review.id}/votes/${this.state.voteId}.json`, {
+      method: 'put',
       body: jsonStringData
     })
     .then(response => {
@@ -144,7 +150,12 @@ class Review extends Component {
     .then(body => {
       let value = body.value;
       let total_votes = body.total_votes;
-      this.setState({ total_votes: total_votes, voteValue: value })
+      this.setState({ total_votes: total_votes });
+      if (this.state.voteValue == 1 || this.state.voteValue === 0) {
+        this.setState({ voteValue: value });
+      } else {
+        this.setState({ voteValue: -1});
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -227,11 +238,13 @@ class Review extends Component {
         <div className="vote-buttons">
           <Upvote
           handleUpvote={this.handleUpvote}
+          voteValue={this.state.voteValue}
           />
           <br />
           <p>{this.state.total_votes}</p>
           <Downvote
           handleDownvote={this.handleDownvote}
+          voteValue={this.state.voteValue}
           />
         </div>
         <div className="review-body">
