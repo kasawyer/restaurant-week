@@ -31,9 +31,11 @@
 
         <%= button_to "More information", restaurant, method: :get %>
         <br/>
+        <br/>
+        <br/>
         <h3>My reviews</h3>
         <% restaurant.reviews.each do |review| %>
-          <p><%= review.rating %>/5: <%= review.body %></p>
+          <p><%= review.created_at.strftime("%B %d %Y") %> — <%= review.rating %>/5: <%= review.body %></p>
         <% end %>
       <% end %>
       </li>

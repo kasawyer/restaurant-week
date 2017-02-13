@@ -38,8 +38,12 @@ pages.each do |page|
     info = restaurant.find("div.address").text
 
     info.slice!(region + " ")
-    address = info.slice(/.* Cuisine/)
-    address = address.chomp!(" Cuisine")
+    if info.include?("Cuisine")
+      address = info.slice(/.* Cuisine/)
+      address = address.chomp!(" Cuisine")
+    else
+      address = info.slice(/.*/)
+    end
 
     # Checking if they serve both lunch and dinner
     if info.include?("Lunch") && info.include?("Dinner")
@@ -141,7 +145,7 @@ pages.each do |page|
       end
 
     # They don't have any info about what meals they serve
-    else
+    elsif info.include?("Cuisine")
       cuisine = info.slice(/Cuisine.*/)
       cuisine = cuisine.sub!("Cuisine: ", "")
     end

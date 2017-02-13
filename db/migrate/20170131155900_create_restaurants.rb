@@ -5,7 +5,7 @@ class CreateRestaurants < ActiveRecord::Migration[5.0]
       t.string :image_url, null: false
       t.string :region, null: false
       t.string :address, null: false
-      t.string :cuisine, null: false
+      t.string :cuisine
       t.string :lunch_price
       t.string :lunch_menu_link
       t.string :dinner_price

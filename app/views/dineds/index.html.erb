@@ -26,15 +26,17 @@
         <% end %>
 
         <% if !restaurant.special_notes.nil? %>
-          <p><%= restaurant.special_notes %></p>
+          <p id="special-notes"><%= restaurant.special_notes %></p>
         <% end %>
 
         <%= button_to "More information", restaurant, method: :get %>
         <br/>
-        <% if !restaurant.reviews.empty? %>
+        <br/>
+        <br/>
+        <% if !@reviews.empty? %>
           <h3>My reviews</h3>
-          <% restaurant.reviews.each do |review| %>
-            <p><%= review.rating %>/5: <%= review.body %></p>
+          <% @reviews.each do |review| %>
+            <p><%= review.created_at.strftime("%B %d %Y") %> — <%= review.rating %>/5: <%= review.body %></p>
           <% end %>
         <% end %>
       <% end %>

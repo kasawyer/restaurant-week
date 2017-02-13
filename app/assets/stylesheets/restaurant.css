@@ -163,6 +163,14 @@ a {
   line-height: 80%;
 }
 
+#special-notes {
+  line-height: 100%;
+}
+
+.restaurant-list-item-dined p {
+  line-height: 80%;
+}
+
 .restaurant-name {
   font-weight: 600;
 }

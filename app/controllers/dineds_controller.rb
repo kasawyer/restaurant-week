@@ -7,6 +7,9 @@ class DinedsController < ApplicationController
     @dineds.each do |dined|
       @restaurant_id = dined.restaurant_id
       @restaurant = Restaurant.find(@restaurant_id)
+      if @user.reviews.where("restaurant_id = @restaurant_id")
+        @reviews = @user.reviews.where("restaurant_id = @restaurant_id")
+      end
       @restaurants << @restaurant
     end
   end

@@ -27,6 +27,8 @@
   text-align: center;
   vertical-align: top;
   padding: 20px;
+  margin-top: 10px;
+  padding-right: 30px;
 }
 
 .vote-buttons p {
@@ -58,5 +60,5 @@
 }
 
 .action {
-  margin-left: -10px;
+  /*margin-left: -10px;*/
 }

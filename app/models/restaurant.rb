@@ -88,7 +88,6 @@ class Restaurant < ApplicationRecord
   validates :image_url, presence: true
   validates :region, presence: true
   validates :address, presence: true
-  validates :cuisine, presence: true
 
   def self.search(search)
     search.delete_if { |_key, value| value.empty? }
