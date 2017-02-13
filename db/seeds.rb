@@ -42,7 +42,7 @@ pages.each do |page|
       address = info.slice(/.* Cuisine/)
       address = address.chomp!(" Cuisine")
     else
-      address = address = info.slice(/.*/)
+      address = info.slice(/.*/)
     end
 
     # Checking if they serve both lunch and dinner
