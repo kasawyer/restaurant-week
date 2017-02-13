@@ -18,7 +18,6 @@ engines:
       languages:
       - ruby
       #mass_threshold: 30
-      - javascript
 ratings:
   paths:
   - app/**
