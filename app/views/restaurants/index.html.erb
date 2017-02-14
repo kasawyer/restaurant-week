@@ -1,6 +1,6 @@
 <div class="page-body">
 
-  <h1>Participating restaurants</h1>
+  <h2>Participating restaurants</h2>
 
   <div class="filter-form">
   <%= form_tag(restaurants_path, method: "get", id: "search-form") do %>
@@ -45,8 +45,7 @@
           <p id="special-notes"><%= restaurant.special_notes %></p>
         <% end %>
 
-        <%= button_to "More information", restaurant, method: :get %>
-        <br/>
+        <%= button_to "More information", restaurant, method: :get, class: "more-info-button" %>
         <br/>
       <% end %>
       </li>

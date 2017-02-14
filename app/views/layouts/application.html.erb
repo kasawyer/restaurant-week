@@ -32,7 +32,7 @@
               <li class="avatar"><%= image_tag current_user.avatar.url(:thumb) %></li>
             <% end %>
             <li></li>
-            <li>Signed in as <%= current_user.name %></li>
+            <li class="signed-in-as">Signed in as <%= current_user.name %></li>
           <% else %>
           <% end %>
           <li>
