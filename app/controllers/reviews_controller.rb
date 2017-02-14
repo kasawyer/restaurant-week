@@ -23,6 +23,9 @@ class ReviewsController < ApplicationController
     @reviews.each do |review|
       @restaurant_id = review.restaurant_id
       @restaurant = Restaurant.find(@restaurant_id)
+      if @user.reviews.where("restaurant_id = @restaurant_id")
+        @reviews = @user.reviews.where("restaurant_id = @restaurant_id")
+      end
       unless @restaurants.include?(@restaurant)
         @restaurants << @restaurant
       end
