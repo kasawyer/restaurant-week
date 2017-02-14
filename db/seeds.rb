@@ -156,7 +156,7 @@ pages.each do |page|
       cuisine = cuisine.sub!("Cuisine: ", "")
     end
 
-    Restaurant.create!(
+    Restaurant.find_or_create_by(
       name: name,
       image_url: image_url,
       region: region,
