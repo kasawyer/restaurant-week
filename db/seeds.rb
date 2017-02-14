@@ -4,8 +4,6 @@ require 'capybara/poltergeist'
 
 session = Capybara::Session.new(:poltergeist)
 
-options = { js_errors: false }
-
 pages = [
   'https://www.bostonusa.com/dine-out-boston/restaurant-search/?skip=0&sort=rankTitle&dtnids=11019%2C15829',
   'https://www.bostonusa.com/dine-out-boston/restaurant-search/?skip=6&sort=rankTitle&dtnids=11019%2C15829',
@@ -30,7 +28,7 @@ pages = [
   'https://www.bostonusa.com/dine-out-boston/restaurant-search/?skip=120&sort=rankTitle&dtnids=11019%2C15829'
 ]
 
-pages.each do |page, options|
+pages.each do |page|
   session.visit(page)
 
   session.all('.main_container div.listings .small-block-grid-1 li').each do |restaurant|

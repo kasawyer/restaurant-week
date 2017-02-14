@@ -87,6 +87,15 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  Capybara.javascript_driver = :poltergeist
+
+  options = { js_errors: false }
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, options)
+  end
+
+  Capybara.current_driver = :poltergeist
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
